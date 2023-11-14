@@ -1,3 +1,5 @@
-import { Outlet } from "react-router-dom";
+import Router from "./router";
 
-export const App = () => <Outlet />;
+const App = () => <Router />;
+
+export default App;
