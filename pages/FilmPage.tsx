@@ -1,7 +1,3 @@
-import React from 'react'
+import React from "react";
 
-export default function FilmPage() {
-  return (
-    <div>FilmPage</div>
-  )
-}
+export const FilmPage = () => <div>FilmPage</div>;
