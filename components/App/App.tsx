@@ -1,9 +1,9 @@
 import { Outlet } from 'react-router-dom';
 
-export const App = () => {
+export default function App() {
   return (
     <>
       <Outlet />
     </>
   );
-};
+}
