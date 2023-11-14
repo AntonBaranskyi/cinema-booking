@@ -2,8 +2,10 @@ import React from "react";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { App } from "../src/App";
-import { HomePage, FilmPage, NotFoundPage } from "../pages";
+import App from "../src";
+import HomePage from "../pages/HomePage";
+import FilmPage from "../pages/FilmPage";
+import NotFoundPage from "../pages/NotFoundPage";
 
 export const Root = () => (
   <BrowserRouter>
