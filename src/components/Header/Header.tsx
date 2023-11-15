@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import eng from "../../assets/icons/eng.png";
 import logo from "../../assets/icons/logo.png";

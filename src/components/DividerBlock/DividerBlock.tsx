@@ -1,6 +1,5 @@
 import BackHandOutlinedIcon from "@mui/icons-material/BackHandOutlined";
 import { Box, Divider, Typography } from "@mui/material";
-import React from "react";
 
 export const DividerBlock = () => {
   return (
