@@ -15,7 +15,10 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
   const normalizeTitle =
     movie.title.length > 20 ? movie.title.slice(0, 21) + "..." : movie.title;
   return (
-    <Card sx={{ width: "400px", backgroundColor: "none", height: "300px" }}>
+    <Card
+      className={styles.card}
+      sx={{ width: "400px", backgroundColor: "none", height: "300px" }}
+    >
       <CardContent sx={{ display: "flex", gap: 2 }}>
         <img src={poster} alt="poster" className={styles.poster} />
 
