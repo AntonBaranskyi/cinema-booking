@@ -16,6 +16,7 @@ import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";
 import { SearchParams, getSearchWith } from "../../utils/searchHelper";
 import SearchLink from "../SearchLink";
+import styles from "./Filters.module.scss";
 
 const filterOptions = [FILTERS.ALL, FILTERS.TWO_D, FILTERS.THREE_D];
 const sortOptions = [
@@ -43,7 +44,7 @@ export const Filters = () => {
   };
 
   return (
-    <Box sx={{ display: "flex", gap: 5, marginBottom: "40px" }}>
+    <div className={styles.filtersWrapper}>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <Typography
           color="gray"
@@ -89,6 +90,6 @@ export const Filters = () => {
           </Select>
         </FormControl>
       </Box>
-    </Box>
+    </div>
   );
 };

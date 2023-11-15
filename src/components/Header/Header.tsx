@@ -66,10 +66,10 @@ export const Header = () => {
           >
             Our cinema
           </Typography>
-          <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
+          <div className={styles.headerLang}>
             <AccessTimeOutlinedIcon />
             <Typography variant="h6">{formattedTime}</Typography>
-          </Box>
+          </div>
           <Select
             defaultValue="en"
             input={<Input id="language-select" />}

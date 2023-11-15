@@ -1,0 +1,10 @@
+@import "../../styles/mixins.scss";
+
+.filtersWrapper {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 40px;
+  @include onPhone {
+    flex-direction: column;
+  }
+}

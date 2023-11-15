@@ -1,3 +1,5 @@
+@import "../../styles/mixins.scss";
+
 .logo {
   width: 70px;
   height: 70px;
@@ -10,4 +12,14 @@
 
 .headerMargin {
   margin-bottom: 70px;
+}
+
+.headerLang {
+  display: flex;
+  gap: 1;
+  align-items: center;
+
+  @include onPhone {
+    display: none;
+  }
 }
