@@ -15,6 +15,15 @@ import logo from "../../assets/icons/logo.png";
 import ukraine from "../../assets/icons/ukraine.png";
 import styles from "./Header.module.scss";
 
+const headerLangData = [
+  { title: "English", value: "en", source: eng },
+  {
+    title: "Ukrainian",
+    value: "ukr",
+    source: ukraine,
+  },
+];
+
 export const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -70,18 +79,18 @@ export const Header = () => {
               alignItems: "center",
             }}
           >
-            <MenuItem value="en">
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                English
-                <img src={eng} alt="eng" className={styles.icon} />
-              </Box>
-            </MenuItem>
-            <MenuItem value="ukr">
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                Ukrainian
-                <img src={ukraine} alt="ukr" className={styles.icon} />
-              </Box>
-            </MenuItem>
+            {headerLangData.map((headerItem) => (
+              <MenuItem value={headerItem.value} key={headerItem.value}>
+                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                  {headerItem.title}
+                  <img
+                    src={headerItem.source}
+                    alt={headerItem.value}
+                    className={styles.icon}
+                  />
+                </Box>
+              </MenuItem>
+            ))}
           </Select>
         </Toolbar>
       </Container>

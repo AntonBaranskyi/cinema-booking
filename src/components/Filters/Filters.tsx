@@ -4,15 +4,17 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";
+import { SearchParams, getSearchWith } from "../../utils/searchHelper";
 import SearchLink from "../SearchLink";
 
 const filterOptions = [FILTERS.ALL, FILTERS.TWO_D, FILTERS.THREE_D];
@@ -22,19 +24,23 @@ const sortOptions = [
 ];
 
 export const Filters = () => {
-  const [searchParams] = useSearchParams();
-  const [sortState, setSortState] = useState<SORT | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [sortState, setSortState] = useState<SORT>(SORT.ASC);
 
   const filter = (searchParams.get("filter") || FILTERS.ALL) as FILTERS;
-  const sort = searchParams.get("order") as SORT;
 
-  useEffect(() => {
-    setSortState(sort);
-  }, [sort]);
+  const handleSortChange = (event: SelectChangeEvent) => {
+    const selectedValue = event.target.value as SORT;
 
-  const curentSortOptionTitle = useMemo(() => {
-    return sortOptions.find((item) => item.value === sortState)?.title;
-  }, [sortState]);
+    setSortState(selectedValue);
+    setSearchWith({ order: selectedValue });
+  };
+
+  const setSearchWith = (params: SearchParams) => {
+    const search = getSearchWith(searchParams, params);
+
+    setSearchParams(search);
+  };
 
   return (
     <Box sx={{ display: "flex", gap: 5, marginBottom: "40px" }}>
@@ -68,17 +74,17 @@ export const Filters = () => {
 
       <Box sx={{ display: "flex", alignItems: "center", minWidth: "150px" }}>
         <FormControl fullWidth>
-          <InputLabel>{curentSortOptionTitle}</InputLabel>
-          <Select variant="standard" value={curentSortOptionTitle}>
+          <InputLabel>Sort By</InputLabel>
+
+          <Select
+            variant="outlined"
+            value={sortState}
+            onChange={handleSortChange}
+          >
             {sortOptions.map((option) => (
-              <SearchLink
-                key={option.title}
-                params={{ order: option.value, page: "1" }}
-              >
-                <MenuItem selected={sort === option.value} value={option.value}>
-                  {option.title}
-                </MenuItem>
-              </SearchLink>
+              <MenuItem key={option.title} value={option.value}>
+                {option.title}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

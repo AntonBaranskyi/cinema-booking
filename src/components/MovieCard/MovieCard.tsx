@@ -37,6 +37,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
           <Box sx={{ display: "flex", flexWrap: "wrap" }}>
             {sessionHours.map((hour) => (
               <Box
+                key={hour}
                 sx={{
                   maxWidth: "50px",
                   width: "100%",

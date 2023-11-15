@@ -27,7 +27,9 @@ export const Pagination = () => {
     setSearchWith({ page: page === "1" ? null : page });
   };
   return (
-    <Box sx={{ display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{ display: "flex", justifyContent: "center", marginBottom: "70px" }}
+    >
       <Paginate
         size="large"
         count={pageCount}
