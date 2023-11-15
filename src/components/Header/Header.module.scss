@@ -12,6 +12,10 @@
 
 .headerMargin {
   margin-bottom: 70px;
+
+  @include onPhone {
+    flex-direction: column;
+  }
 }
 
 .headerLang {
