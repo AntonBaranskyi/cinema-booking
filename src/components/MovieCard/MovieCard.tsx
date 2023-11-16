@@ -1,5 +1,6 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import poster from "../../assets/movie_poster.jpg";
 import { Movie } from "../../types/movie";
@@ -11,9 +12,14 @@ type Props = {
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
   const sessionHours = ["10:00", "12:30", "15:00", "17:30", "20:00"];
+  const { t } = useTranslation();
+
+  const translatedTitle = t(movie.title);
 
   const normalizeTitle =
-    movie.title.length > 20 ? movie.title.slice(0, 21) + "..." : movie.title;
+    translatedTitle.length > 20
+      ? translatedTitle.slice(0, 21) + "..."
+      : translatedTitle;
   return (
     <Card className={styles.card}>
       <CardContent sx={{ display: "flex", gap: 2 }}>

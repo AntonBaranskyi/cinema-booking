@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
 import { FILTERS } from "../../types/filterEnum";
@@ -20,13 +21,14 @@ import styles from "./Filters.module.scss";
 
 const filterOptions = [FILTERS.ALL, FILTERS.TWO_D, FILTERS.THREE_D];
 const sortOptions = [
-  { title: "Title A - Z", value: SORT.ASC },
-  { title: "Title Z - A", value: SORT.DESC },
+  { title: "title_A-Z", value: SORT.ASC },
+  { title: "title_Z-A", value: SORT.DESC },
 ];
 
 export const Filters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortState, setSortState] = useState<SORT>(SORT.ASC);
+  const { t } = useTranslation();
 
   const filter = (searchParams.get("filter") || FILTERS.ALL) as FILTERS;
 
@@ -51,7 +53,7 @@ export const Filters = () => {
           fontSize={20}
           sx={{ textTransform: "uppercase" }}
         >
-          Formats:
+          {`${t("movie_format")}:`}
         </Typography>
         <ToggleButtonGroup value={filter} exclusive sx={{ marginLeft: 2 }}>
           {filterOptions.map((option) => (
@@ -66,7 +68,7 @@ export const Filters = () => {
                 sx={{ backgroundColor: option === filter ? "red" : "initial" }}
                 value={option}
               >
-                {option}
+                {option === FILTERS.ALL ? t("movie_all") : option}
               </ToggleButton>
             </SearchLink>
           ))}
@@ -75,7 +77,7 @@ export const Filters = () => {
 
       <Box sx={{ display: "flex", alignItems: "center", minWidth: "150px" }}>
         <FormControl fullWidth>
-          <InputLabel>Sort By</InputLabel>
+          <InputLabel>{t("sort_by")}</InputLabel>
 
           <Select
             variant="outlined"
@@ -84,7 +86,7 @@ export const Filters = () => {
           >
             {sortOptions.map((option) => (
               <MenuItem key={option.title} value={option.value}>
-                {option.title}
+                {t(option.title)}
               </MenuItem>
             ))}
           </Select>

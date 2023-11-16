@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
+import language from "./slices/LangSilce";
 import movies from "./slices/MoviesSlice";
 
 export const store = configureStore({
   reducer: {
     movies,
+    language,
   },
 });
 

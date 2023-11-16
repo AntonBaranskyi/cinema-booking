@@ -4,28 +4,43 @@ import {
   Input,
   MenuItem,
   Select,
+  SelectChangeEvent,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 import eng from "../../assets/icons/eng.png";
 import logo from "../../assets/icons/logo.png";
 import ukraine from "../../assets/icons/ukraine.png";
+import { onChangeLanguage } from "../../store/slices/LangSilce";
+import { RootState, useAppDispatch } from "../../store/store";
+import { Language } from "../../types/langType";
 import styles from "./Header.module.scss";
 
 const headerLangData = [
   { title: "English", value: "en", source: eng },
   {
     title: "Ukrainian",
-    value: "ukr",
+    value: "ua",
     source: ukraine,
   },
 ];
 
 export const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
+
+  const { currentLanguage } = useSelector((state: RootState) => state.language);
+
+  const dispatch = useAppDispatch();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(currentLanguage);
+  }, [currentLanguage, i18n]);
 
   useEffect(() => {
     const intervalTime = setInterval(() => {
@@ -40,6 +55,10 @@ export const Header = () => {
     minute: "2-digit",
     hour12: false,
   });
+
+  const handleChangeLang = (event: SelectChangeEvent) => {
+    dispatch(onChangeLanguage(event.target.value as Language));
+  };
 
   return (
     <AppBar position="static" className={styles.headerMargin}>
@@ -73,6 +92,8 @@ export const Header = () => {
           <Select
             defaultValue="en"
             input={<Input id="language-select" />}
+            value={currentLanguage}
+            onChange={handleChangeLang}
             sx={{
               color: "white",
               display: "flex",
