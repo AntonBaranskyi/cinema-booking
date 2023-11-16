@@ -9,6 +9,9 @@
 }
 
 .card {
+  width: 400px;
+  background-color: none;
+  height: 300px;
   @include onPhone {
     width: 350px;
   }

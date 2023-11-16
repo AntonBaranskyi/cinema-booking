@@ -6,5 +6,7 @@
   margin-bottom: 40px;
   @include onPhone {
     flex-direction: column;
+
+    gap: 40px;
   }
 }

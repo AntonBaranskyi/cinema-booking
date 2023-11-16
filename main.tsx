@@ -1,4 +1,4 @@
-import { ThemeProvider, createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
@@ -6,21 +6,7 @@ import { Provider } from "react-redux";
 import App from "./src/App";
 import store from "./src/store";
 import "./src/styles/main.scss";
-
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1300,
-      xl: 1536,
-    },
-  },
-});
+import theme from "./src/styles/theme";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
