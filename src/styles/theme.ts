@@ -13,6 +13,14 @@ const theme = createTheme({
       xl: 1536,
     },
   },
+
+  components: {
+    MuiDivider: {
+      styleOverrides: {
+        root: {},
+      },
+    },
+  },
 });
 
 if (
