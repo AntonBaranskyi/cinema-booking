@@ -12,6 +12,38 @@
   width: 400px;
   background-color: none;
   height: 300px;
+
+  .cardContent {
+    display: flex;
+    gap: 2em;
+
+    .cardInfo {
+      display: flex;
+      flex-direction: column;
+
+      .cardTitle {
+        margin-bottom: 1em;
+      }
+
+      .cardSessions {
+        display: flex;
+        flex-wrap: wrap;
+
+        .cardSessionsItem {
+          max-width: 50px;
+          width: 100%;
+          text-align: center;
+          margin: 0 0.2em 1em;
+          cursor: pointer;
+
+          .itemFormat {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+  }
+
   @include onPhone {
     width: 350px;
   }

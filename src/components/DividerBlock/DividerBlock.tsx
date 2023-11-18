@@ -2,21 +2,22 @@ import BackHandOutlinedIcon from "@mui/icons-material/BackHandOutlined";
 import { Box, Divider, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import styles from "./Divider.module.scss";
+import { translatePath } from "../../constants/i18nPath";
+import styles from "./DividerBlock.module.scss";
 
 export const DividerBlock = () => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.divider}>
+    <Box className={styles.dividerWrapper}>
       <Divider light>
         <Typography fontSize="12" color="gray">
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+          <Box className={styles.dividerBox}>
             <BackHandOutlinedIcon />
-            {t("divider")}
+            {t(`${translatePath.divider}.divider_item`)}
           </Box>
         </Typography>
       </Divider>
-    </div>
+    </Box>
   );
 };

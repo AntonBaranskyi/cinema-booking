@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { translatePath } from "../../constants/i18nPath";
 import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";
 import { SearchParams, getSearchWith } from "../../utils/searchHelper";
@@ -46,16 +47,16 @@ export const Filters = () => {
   };
 
   return (
-    <div className={styles.filtersWrapper}>
-      <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Typography
-          color="gray"
-          fontSize={20}
-          sx={{ textTransform: "uppercase" }}
-        >
-          {`${t("movie_format")}:`}
+    <Box className={styles.filterWrapper}>
+      <Box className={styles.filtersFormats}>
+        <Typography color="gray" fontSize={20} className={styles.filterTitle}>
+          {`${t(`${translatePath.filters}.movie_format`)}:`}
         </Typography>
-        <ToggleButtonGroup value={filter} exclusive sx={{ marginLeft: 2 }}>
+        <ToggleButtonGroup
+          value={filter}
+          exclusive
+          className={styles.filterBtnGroup}
+        >
           {filterOptions.map((option) => (
             <SearchLink
               key={option}
@@ -65,19 +66,21 @@ export const Filters = () => {
               }}
             >
               <ToggleButton
-                sx={{ backgroundColor: option === filter ? "red" : "initial" }}
+                className={`${option === filter ? styles.filterActiveBtn : ""}`}
                 value={option}
               >
-                {option === FILTERS.ALL ? t("movie_all") : option}
+                {option === FILTERS.ALL
+                  ? t(`${translatePath.filters}.movie_all`)
+                  : option}
               </ToggleButton>
             </SearchLink>
           ))}
         </ToggleButtonGroup>
       </Box>
 
-      <Box sx={{ display: "flex", alignItems: "center", minWidth: "150px" }}>
+      <Box className={styles.filterSortWrapper}>
         <FormControl fullWidth>
-          <InputLabel>{t("sort_by")}</InputLabel>
+          <InputLabel>{t(`${translatePath.filters}.sort_by`)}</InputLabel>
 
           <Select
             variant="outlined"
@@ -86,12 +89,12 @@ export const Filters = () => {
           >
             {sortOptions.map((option) => (
               <MenuItem key={option.title} value={option.value}>
-                {t(option.title)}
+                {t(`${translatePath.filters}.${option.title}`)}
               </MenuItem>
             ))}
           </Select>
         </FormControl>
       </Box>
-    </div>
+    </Box>
   );
 };

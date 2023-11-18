@@ -1,0 +1,14 @@
+{
+  "movies": {
+    "filters": {
+      "movie_format": "formats",
+      "movie_all": "all",
+      "sort_by": "Sort By",
+      "title_A-Z": "Title A - Z",
+      "title_Z-A": "Title Z - A"
+    },
+    "divider": {
+      "divider_item": "Click on a time of the seccion to choose a place"
+    }
+  }
+}

@@ -1,10 +1,11 @@
-import { Container } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import DividerBlock from "../../components/DividerBlock";
 import Filters from "../../components/Filters";
 import Header from "../../components/Header";
 import MoviesList from "../../components/MoviesList";
 import Pagination from "../../components/Pagination";
+import styles from "./HomePage.module.scss";
 
 export const HomePage = () => (
   <>
@@ -13,16 +14,9 @@ export const HomePage = () => (
       <Filters />
       <DividerBlock />
 
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          marginBottom: "40px",
-        }}
-        className="div"
-      >
+      <Box className={styles.movieListWrapper}>
         <MoviesList />
-      </div>
+      </Box>
 
       <Pagination />
     </Container>

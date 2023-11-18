@@ -1,6 +1,7 @@
 [
   {
-    "title": "The Great Gatsby",
+    "title_en": "The Great Gatsby",
+    "title_ua": "Великий Гетсбі",
     "description": "A love and disillusionment story set in the era of glamour and debauchery in the 1920s.",
     "format": "2D",
     "filters": ["Drama", "Romance"],
@@ -13,7 +14,8 @@
     "hallType": "standard"
   },
   {
-    "title": "Inception",
+    "title_en": "Inception",
+    "title_ua": "Початок",
     "description": "Theft of secrets from the depths of the subconscious becomes possible in dreams.",
     "format": "3D",
     "filters": ["Action", "Science Fiction", "Thriller"],
@@ -26,7 +28,8 @@
     "hallType": "vip"
   },
   {
-    "title": "Forrest Gump",
+    "title_en": "Forrest Gump",
+    "title_ua": "Форрест Ґамп",
     "description": "A simple man accidentally becomes a participant in key events of the 20th century.",
     "format": "2D",
     "filters": ["Drama", "Comedy"],
@@ -39,7 +42,8 @@
     "hallType": "standard"
   },
   {
-    "title": "The Green Mile",
+    "title_en": "The Green Mile",
+    "title_ua": "Зелена миля",
     "description": "A story about kindness, miracles, and innocence on death row.",
     "format": "3D",
     "filters": ["Drama", "Fantasy"],
@@ -52,7 +56,8 @@
     "hallType": "vip"
   },
   {
-    "title": "The Matrix",
+    "title_en": "The Matrix",
+    "title_ua": "Матриця",
     "description": "A revolutionary cyberpunk where the hero realizes the true nature of his existence.",
     "format": "2D",
     "filters": ["Action", "Science Fiction"],
@@ -65,7 +70,8 @@
     "hallType": "standard"
   },
   {
-    "title": "The Shawshank Redemption",
+    "title_en": "The Shawshank Redemption",
+    "title_ua": "Втеча з Шоушенка",
     "description": "An intriguing story about friendship, hope, and freedom in the prison world.",
     "format": "3D",
     "filters": ["Drama", "Crime"],
@@ -78,7 +84,8 @@
     "hallType": "vip"
   },
   {
-    "title": "The Lord of the Rings: The Fellowship of the Ring",
+    "title_en": "The Lord of the Rings: The Fellowship of the Ring",
+    "title_ua": "Володар перснів: Хранителі персня",
     "description": "An epic adventure in the world of Middle-earth, full of magic and danger.",
     "format": "2D",
     "filters": ["Fantasy", "Adventure"],
@@ -91,7 +98,8 @@
     "hallType": "standard"
   },
   {
-    "title": "Spider Man",
+    "title_en": "Spider Man",
+    "title_ua": "Людина-павук",
     "description": "A talented thief executes a complex heist using identity substitution techniques.",
     "format": "2D",
     "filters": ["Thriller", "Action"],
@@ -104,7 +112,8 @@
     "hallType": "vip"
   },
   {
-    "title": "A Beautiful Mind",
+    "title_en": "A Beautiful Mind",
+    "title_ua": "Ігри розуму",
     "description": "The story of a mathematician suffering from schizophrenia who changes the field of science.",
     "format": "2D",
     "filters": ["Drama", "Biography"],
@@ -117,7 +126,8 @@
     "hallType": "standard"
   },
   {
-    "title": "Sherlock Holmes",
+    "title_en": "Sherlock Holmes",
+    "title_ua": "Шерлок Холмс",
     "description": "The legendary detective solves complex criminal mysteries in Victorian London.",
     "format": "3D",
     "filters": ["Detective", "Action"],

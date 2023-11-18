@@ -1,5 +1,6 @@
-export interface Movie {
-  title: string;
+export interface IMovie {
+  title_en: string;
+  title_ua: string;
   description: string;
   format: string;
   filters: string[];

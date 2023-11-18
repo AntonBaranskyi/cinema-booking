@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 
 import { RootState } from "../../store/store";
 import { SearchParams, getSearchWith } from "../../utils/searchHelper";
+import styles from "./Pagination.module.scss";
 
 export const Pagination = () => {
   const { filteredMovies, moviesPerPage } = useSelector(
@@ -27,9 +28,7 @@ export const Pagination = () => {
     setSearchWith({ page: page === "1" ? null : page });
   };
   return (
-    <Box
-      sx={{ display: "flex", justifyContent: "center", marginBottom: "70px" }}
-    >
+    <Box className={styles.paginationWrapper}>
       <Paginate
         size="large"
         count={pageCount}

@@ -14,6 +14,7 @@ export const MoviesList = () => {
   const { filteredMovies, allMovies, moviesPerPage } = useSelector(
     (state: RootState) => state.movies,
   );
+  const { currentLanguage } = useSelector((state: RootState) => state.language);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
 
@@ -24,9 +25,14 @@ export const MoviesList = () => {
   const sort = searchParams.get("order") as SORT;
 
   useEffect(() => {
-    const visibleMovies = filterMovies({ movies: allMovies, filter, sort });
+    const visibleMovies = filterMovies({
+      movies: allMovies,
+      filter,
+      sort,
+      lang: currentLanguage,
+    });
     dispatch(onFilterMovies(visibleMovies));
-  }, [dispatch, sort, filter, allMovies]);
+  }, [dispatch, sort, filter, allMovies, currentLanguage]);
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
@@ -38,7 +44,7 @@ export const MoviesList = () => {
   return (
     <Grid justifyContent="center" container columnGap={2} rowGap={4}>
       {currentMovies.map((movie) => (
-        <Grid item sm={12} md="auto" xl="auto" key={movie.title}>
+        <Grid item sm={12} md="auto" xl="auto" key={movie.title_en}>
           <MovieCard movie={movie} />
         </Grid>
       ))}

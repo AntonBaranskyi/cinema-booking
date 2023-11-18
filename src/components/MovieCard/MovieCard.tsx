@@ -1,61 +1,47 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
-import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 
 import poster from "../../assets/movie_poster.jpg";
-import { Movie } from "../../types/movie";
+import { SESSIONS } from "../../constants/Sesions";
+import { RootState } from "../../store/store";
+import { IMovie } from "../../types/movie";
+import { prepareTitle } from "../../utils/normalizeTitle";
+import { getTitleLang } from "../../utils/prepareTitle";
 import styles from "./MovieCard.module.scss";
 
 type Props = {
-  movie: Movie;
+  movie: IMovie;
 };
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
-  const sessionHours = ["10:00", "12:30", "15:00", "17:30", "20:00"];
-  const { t } = useTranslation();
+  const { currentLanguage } = useSelector((state: RootState) => state.language);
 
-  const translatedTitle = t(movie.title);
+  const langTitle = getTitleLang(currentLanguage) as keyof IMovie;
 
-  const normalizeTitle =
-    translatedTitle.length > 20
-      ? translatedTitle.slice(0, 21) + "..."
-      : translatedTitle;
+  const normalizeTitle = prepareTitle(movie[langTitle] as string);
   return (
     <Card className={styles.card}>
-      <CardContent sx={{ display: "flex", gap: 2 }}>
+      <CardContent className={styles.cardContent}>
         <img src={poster} alt="poster" className={styles.poster} />
 
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-          }}
-        >
+        <Box className={styles.cardInfo}>
           <Typography
             textAlign="center"
             component="h4"
             variant="h5"
-            sx={{ marginBottom: 3 }}
+            className={styles.cardTitle}
           >
             {`${movie.ageRestriction}+ ${normalizeTitle}`}
           </Typography>
 
-          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
-            {sessionHours.map((hour) => (
-              <Box
-                key={hour}
-                sx={{
-                  maxWidth: "50px",
-                  width: "100%",
-                  textAlign: "center",
-                  margin: "0 4px 14px",
-                  cursor: "pointer",
-                }}
-              >
+          <Box className={styles.cardSessions}>
+            {SESSIONS.map((hour) => (
+              <Box key={hour} className={styles.cardSessionsItem}>
                 <Typography>{hour}</Typography>
 
                 {movie.format === "3D" && (
-                  <Typography sx={{ fontSize: 10 }}>3D</Typography>
+                  <Typography className={styles.itemFormat}>3D</Typography>
                 )}
               </Box>
             ))}

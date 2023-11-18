@@ -13,20 +13,18 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-import eng from "../../assets/icons/eng.png";
 import logo from "../../assets/icons/logo.png";
-import ukraine from "../../assets/icons/ukraine.png";
 import { onChangeLanguage } from "../../store/slices/LangSilce";
 import { RootState, useAppDispatch } from "../../store/store";
 import { Language } from "../../types/langType";
 import styles from "./Header.module.scss";
 
 const headerLangData = [
-  { title: "English", value: "en", source: eng },
+  { title: "English", value: "en", img: "GB" },
   {
     title: "Ukrainian",
     value: "ua",
-    source: ukraine,
+    img: "UA",
   },
 ];
 
@@ -63,49 +61,36 @@ export const Header = () => {
   return (
     <AppBar position="static" className={styles.headerMargin}>
       <Container maxWidth="xl">
-        <Toolbar
-          sx={{
-            padding: 2,
-            gap: 4,
-            alignItems: "center",
-          }}
-        >
+        <Toolbar className={styles.headerToolbar}>
           <img src={logo} alt="logo" className={styles.logo} />
           <Typography
+            className={styles.headerTextLogo}
             color="white"
             variant="h5"
             component="a"
             href="#"
-            sx={{
-              textDecoration: "none",
-              fontWeight: 700,
-              letterSpacing: ".2rem",
-              flexGrow: 1,
-            }}
+            fontWeight={700}
+            letterSpacing={0.2}
           >
             Our cinema
           </Typography>
-          <div className={styles.headerLang}>
+          <Box className={styles.headerClock}>
             <AccessTimeOutlinedIcon />
             <Typography variant="h6">{formattedTime}</Typography>
-          </div>
+          </Box>
           <Select
             defaultValue="en"
             input={<Input id="language-select" />}
             value={currentLanguage}
             onChange={handleChangeLang}
-            sx={{
-              color: "white",
-              display: "flex",
-              alignItems: "center",
-            }}
+            className={styles.headerLanguage}
           >
             {headerLangData.map((headerItem) => (
               <MenuItem value={headerItem.value} key={headerItem.value}>
-                <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Box className={styles.headerLanguageWrapper}>
                   {headerItem.title}
                   <img
-                    src={headerItem.source}
+                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${headerItem.img}.svg`}
                     alt={headerItem.value}
                     className={styles.icon}
                   />

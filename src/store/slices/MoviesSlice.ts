@@ -1,11 +1,11 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 import moviesFromServer from "../../assets/films.json";
-import { Movie } from "../../types/movie";
+import { IMovie } from "../../types/movie";
 
 interface IState {
-  allMovies: Movie[];
-  filteredMovies: Movie[];
+  allMovies: IMovie[];
+  filteredMovies: IMovie[];
   currentPage: number;
   moviesPerPage: number;
 }
@@ -21,7 +21,7 @@ const moviesSlice = createSlice({
   name: "movies",
   initialState,
   reducers: {
-    onFilterMovies: (state, action: PayloadAction<Movie[]>) => {
+    onFilterMovies: (state, action: PayloadAction<IMovie[]>) => {
       state.filteredMovies = action.payload;
       state.currentPage = 1;
     },

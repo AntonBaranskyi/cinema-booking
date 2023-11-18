@@ -1,14 +1,21 @@
 import { FILTERS } from "../types/filterEnum";
-import { Movie } from "../types/movie";
+import { Language } from "../types/langType";
+import { IMovie } from "../types/movie";
 import { SORT } from "../types/sortEnum";
 
-interface Params {
-  movies: Movie[];
+interface IParams {
+  movies: IMovie[];
   filter: FILTERS;
   sort: SORT;
+  lang: Language;
 }
 
-export const filterMovies = ({ movies, filter, sort }: Params): Movie[] => {
+export const filterMovies = ({
+  movies,
+  filter,
+  sort,
+  lang,
+}: IParams): IMovie[] => {
   let movieCopy = [...movies];
 
   if (filter !== FILTERS.ALL) {
@@ -16,9 +23,19 @@ export const filterMovies = ({ movies, filter, sort }: Params): Movie[] => {
   }
 
   if (sort) {
-    movieCopy.sort((a, b) =>
-      a.title.toLowerCase().localeCompare(b.title.toLowerCase()),
-    );
+    movieCopy.sort((a, b) => {
+      switch (lang) {
+        case "en":
+          return a.title_en
+            .toLowerCase()
+            .localeCompare(b.title_en.toLowerCase());
+
+        case "ua":
+          return a.title_ua
+            .toLowerCase()
+            .localeCompare(b.title_ua.toLowerCase());
+      }
+    });
   }
 
   if (sort === SORT.DESC) {
