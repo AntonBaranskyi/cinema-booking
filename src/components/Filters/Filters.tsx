@@ -4,43 +4,26 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  SelectChangeEvent,
+  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
 
 import { FILTERS_OPTIONS } from "../../constants/FiltersOptions";
 import { SORT_OPTIONS } from "../../constants/SortOptions";
 import { translatePath } from "../../constants/i18nPath";
+import { useFilters } from "../../hooks/useFilters";
 import { FILTERS } from "../../types/filterEnum";
-import { SORT } from "../../types/sortEnum";
-import { SearchParams, getSearchWith } from "../../utils/searchHelper";
 import SearchLink from "../SearchLink";
 import styles from "./Filters.module.scss";
 
 export const Filters = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const [sortState, setSortState] = useState<SORT>(SORT.ASC);
   const { t } = useTranslation();
 
-  const filter = (searchParams.get("filter") || FILTERS.ALL) as FILTERS;
-
-  const handleSortChange = (event: SelectChangeEvent) => {
-    const selectedValue = event.target.value as SORT;
-
-    setSortState(selectedValue);
-    setSearchWith({ order: selectedValue });
-  };
-
-  const setSearchWith = (params: SearchParams) => {
-    const search = getSearchWith(searchParams, params);
-
-    setSearchParams(search);
-  };
+  const { filter, query, sortState, handleChangeQuery, handleSortChange } =
+    useFilters();
 
   return (
     <Box className={styles.filterWrapper}>
@@ -82,6 +65,7 @@ export const Filters = () => {
             variant="outlined"
             value={sortState}
             onChange={handleSortChange}
+            className={styles.filterSelect}
           >
             {SORT_OPTIONS.map((option) => (
               <MenuItem key={option.title} value={option.value}>
@@ -90,6 +74,35 @@ export const Filters = () => {
             ))}
           </Select>
         </FormControl>
+      </Box>
+
+      <Box className={styles.filterSearchWrapper}>
+        <TextField
+          className={styles.filterSearch}
+          inputProps={{
+            sx: {
+              "&::placeholder": {
+                color: "white",
+                opacity: 1,
+              },
+            },
+          }}
+          sx={{
+            "& .MuiInputBase-root": {
+              height: 50,
+            },
+
+            "& .MuiInputBase-input input": {
+              "&::placeholder": {
+                color: "white",
+              },
+            },
+          }}
+          type="search"
+          placeholder="Type movie title to search"
+          value={query}
+          onChange={handleChangeQuery}
+        />
       </Box>
     </Box>
   );

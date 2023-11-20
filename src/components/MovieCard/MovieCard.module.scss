@@ -45,6 +45,7 @@
   }
 
   @include onPhone {
+    margin: 0 auto;
     width: 21.8rem;
   }
 }

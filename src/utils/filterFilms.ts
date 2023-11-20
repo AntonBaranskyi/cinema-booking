@@ -8,6 +8,7 @@ interface IParams {
   filter: FILTERS;
   sort: SORT;
   lang: Language;
+  query: string | null;
 }
 
 export const filterMovies = ({
@@ -15,11 +16,25 @@ export const filterMovies = ({
   filter,
   sort,
   lang,
+  query,
 }: IParams): IMovie[] => {
   let movieCopy = [...movies];
 
   if (filter !== FILTERS.ALL) {
     movieCopy = movieCopy.filter((movie) => movie.format === filter);
+  }
+
+  if (query) {
+    const normalizeQuery = query.toLowerCase();
+    movieCopy = movieCopy.filter((movie) => {
+      const titleLang = (
+        lang === "en" ? "title_en" : "title_ua"
+      ) as keyof IMovie;
+
+      const movieTitle = movie[titleLang] as string;
+
+      return movieTitle.toLowerCase().includes(normalizeQuery);
+    });
   }
 
   if (sort) {

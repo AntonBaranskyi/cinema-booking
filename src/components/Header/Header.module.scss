@@ -13,6 +13,16 @@
 .headerMargin {
   margin-bottom: 4.375rem;
 
+  .headerClock {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+
+    @include onPhone {
+      display: none;
+    }
+  }
+
   @include onPhone {
     flex-direction: column;
   }
@@ -27,16 +37,6 @@
 .headerTextLogo {
   text-decoration: none;
   flex-grow: 1;
-}
-
-.headerClock {
-  display: flex;
-  gap: 1;
-  align-items: center;
-
-  @include onPhone {
-    display: none;
-  }
 }
 
 .headerLanguage {

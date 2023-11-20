@@ -4,6 +4,7 @@ const theme = createTheme({
   palette: {
     mode: "dark",
   },
+
   breakpoints: {
     values: {
       xs: 0,

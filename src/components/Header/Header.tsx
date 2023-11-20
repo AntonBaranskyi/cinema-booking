@@ -8,31 +8,17 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import { useEffect, useState } from "react";
 
 import logo from "../../assets/icons/logo.png";
 import { HEADER_LANG } from "../../constants/HeaderLanguage";
 import { FLAG_ICON_BASE_URL } from "../../constants/IconURl";
 import { useLanguage } from "../../hooks/useLanguage";
+import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./Header.module.scss";
 
 export const Header = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const { formattedTime } = useUpdateTime();
   const { currentLanguage, handleChangeLang } = useLanguage();
-
-  useEffect(() => {
-    const intervalTime = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-
-    return () => clearInterval(intervalTime);
-  }, []);
-
-  const formattedTime = currentTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
 
   return (
     <AppBar position="static" className={styles.headerMargin}>
