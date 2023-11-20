@@ -11,11 +11,10 @@ import {
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 
 import logo from "../../assets/icons/logo.png";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { onChangeLanguage } from "../../store/slices/LangSilce";
-import { RootState, useAppDispatch } from "../../store/store";
 import { Language } from "../../types/langType";
 import styles from "./Header.module.scss";
 
@@ -31,7 +30,7 @@ const headerLangData = [
 export const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
-  const { currentLanguage } = useSelector((state: RootState) => state.language);
+  const { currentLanguage } = useAppSelector((state) => state.language);
 
   const dispatch = useAppDispatch();
   const { i18n } = useTranslation();

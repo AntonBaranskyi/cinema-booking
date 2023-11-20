@@ -1,20 +1,19 @@
 import { Grid } from "@mui/material";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
 import { onFilterMovies } from "../../store/slices/MoviesSlice";
-import { RootState, useAppDispatch } from "../../store/store";
 import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";
 import { filterMovies } from "../../utils/filterFilms";
 import MovieCard from "../MovieCard";
 
 export const MoviesList = () => {
-  const { filteredMovies, allMovies, moviesPerPage } = useSelector(
-    (state: RootState) => state.movies,
+  const { filteredMovies, allMovies, moviesPerPage } = useAppSelector(
+    (state) => state.movies,
   );
-  const { currentLanguage } = useSelector((state: RootState) => state.language);
+  const { currentLanguage } = useAppSelector((state) => state.language);
   const dispatch = useAppDispatch();
   const [searchParams] = useSearchParams();
 

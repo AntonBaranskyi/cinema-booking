@@ -11,7 +11,7 @@
 }
 
 .headerMargin {
-  margin-bottom: 70px;
+  margin-bottom: 2em;
 
   @include onPhone {
     flex-direction: column;

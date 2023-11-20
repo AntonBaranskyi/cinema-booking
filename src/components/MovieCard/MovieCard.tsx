@@ -1,6 +1,7 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import poster from "../../assets/movie_poster.jpg";
 import { SESSIONS } from "../../constants/Sesions";
@@ -20,6 +21,13 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
   const langTitle = getTitleLang(currentLanguage) as keyof IMovie;
 
   const normalizeTitle = prepareTitle(movie[langTitle] as string);
+  const navigate = useNavigate();
+
+  const handleNavigate = () => {
+    const titleForPath = movie.title_en.toLowerCase().replace(" ", "_");
+    navigate(`film/${titleForPath}`);
+  };
+
   return (
     <Card className={styles.card}>
       <CardContent className={styles.cardContent}>
@@ -31,6 +39,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
             component="h4"
             variant="h5"
             className={styles.cardTitle}
+            onClick={handleNavigate}
           >
             {`${movie.ageRestriction}+ ${normalizeTitle}`}
           </Typography>

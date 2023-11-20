@@ -1,0 +1,28 @@
+@import "../../styles/mixins.scss";
+
+.poster {
+  &:first-child {
+    @include onPhone {
+      margin: 0 auto;
+      margin-bottom: 2em;
+    }
+  }
+
+  .MuiGrid-item {
+    display: flex;
+    justify-content: center; // Вирівнювання в центрі по горизонталі
+    align-items: center; // Вирівнювання в центрі по вертикалі
+
+    @include onPhone {
+      margin: 0 auto;
+      margin-bottom: 2em;
+    }
+  }
+}
+
+.widget {
+  @include onPhone {
+    width: 100%;
+    margin: 0 auto;
+  }
+}

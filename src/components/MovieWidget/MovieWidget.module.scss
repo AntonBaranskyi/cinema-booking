@@ -1,0 +1,46 @@
+.widgetWrapper {
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 0.8em 0.8em 0 0;
+  background-color: #3d3737;
+
+  color: #fff;
+
+  margin-bottom: 2em;
+
+  .widgetTop {
+    padding: 1.2em;
+  }
+
+  .widgetMain {
+    background-color: #393939;
+
+    padding: 0 1.4em;
+    min-height: 150px;
+
+    .widgetSessions {
+      display: flex;
+      flex-wrap: wrap;
+
+      .widgetSessionsItem {
+        max-width: 50px;
+        width: 100%;
+        text-align: center;
+        margin: 0 0.2em 1em;
+        cursor: pointer;
+
+        .itemFormat {
+          font-size: 0.7em;
+        }
+      }
+    }
+  }
+
+  .widgetBottom {
+    display: flex;
+    gap: 2em;
+
+    padding: 1em 2em 0.2em;
+  }
+}
