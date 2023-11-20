@@ -1,10 +1,9 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
 
 import poster from "../../assets/movie_poster.jpg";
 import { SESSIONS } from "../../constants/Sesions";
-import { RootState } from "../../store/store";
+import { useAppSelector } from "../../hooks/useAppSelector";
 import { IMovie } from "../../types/movie";
 import { prepareTitle } from "../../utils/normalizeTitle";
 import { getTitleLang } from "../../utils/prepareTitle";
@@ -15,11 +14,12 @@ type Props = {
 };
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
-  const { currentLanguage } = useSelector((state: RootState) => state.language);
+  const { currentLanguage } = useAppSelector((state) => state.common);
 
   const langTitle = getTitleLang(currentLanguage) as keyof IMovie;
 
   const normalizeTitle = prepareTitle(movie[langTitle] as string);
+
   return (
     <Card className={styles.card}>
       <CardContent className={styles.cardContent}>

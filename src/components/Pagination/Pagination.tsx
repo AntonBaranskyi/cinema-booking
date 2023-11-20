@@ -24,9 +24,10 @@ export const Pagination = () => {
 
   const pageCount = Math.ceil(filteredMovies.length / moviesPerPage);
 
-  const handleChange = (_: React.ChangeEvent<unknown>, page: string) => {
-    setSearchWith({ page: page === "1" ? null : page });
+  const handleChange = (_: React.ChangeEvent<unknown>, page: number) => {
+    setSearchWith({ page: page === 1 ? null : page.toString() });
   };
+
   return (
     <Box className={styles.paginationWrapper}>
       <Paginate
@@ -34,7 +35,7 @@ export const Pagination = () => {
         count={pageCount}
         page={currentPage}
         variant="outlined"
-        onChange={(_, page) => handleChange(_, page.toString())}
+        onChange={handleChange}
       />
     </Box>
   );

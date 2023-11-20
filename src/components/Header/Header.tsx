@@ -4,41 +4,21 @@ import {
   Input,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
 import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
 
 import logo from "../../assets/icons/logo.png";
-import { onChangeLanguage } from "../../store/slices/LangSilce";
-import { RootState, useAppDispatch } from "../../store/store";
-import { Language } from "../../types/langType";
+import { HEADER_LANG } from "../../constants/HeaderLanguage";
+import { FLAG_ICON_BASE_URL } from "../../constants/IconURl";
+import { useLanguage } from "../../hooks/useLanguage";
 import styles from "./Header.module.scss";
-
-const headerLangData = [
-  { title: "English", value: "en", img: "GB" },
-  {
-    title: "Ukrainian",
-    value: "ua",
-    img: "UA",
-  },
-];
 
 export const Header = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
-
-  const { currentLanguage } = useSelector((state: RootState) => state.language);
-
-  const dispatch = useAppDispatch();
-  const { i18n } = useTranslation();
-
-  useEffect(() => {
-    i18n.changeLanguage(currentLanguage);
-  }, [currentLanguage, i18n]);
+  const { currentLanguage, handleChangeLang } = useLanguage();
 
   useEffect(() => {
     const intervalTime = setInterval(() => {
@@ -53,10 +33,6 @@ export const Header = () => {
     minute: "2-digit",
     hour12: false,
   });
-
-  const handleChangeLang = (event: SelectChangeEvent) => {
-    dispatch(onChangeLanguage(event.target.value as Language));
-  };
 
   return (
     <AppBar position="static" className={styles.headerMargin}>
@@ -85,13 +61,13 @@ export const Header = () => {
             onChange={handleChangeLang}
             className={styles.headerLanguage}
           >
-            {headerLangData.map((headerItem) => (
-              <MenuItem value={headerItem.value} key={headerItem.value}>
+            {HEADER_LANG.map((headerLang) => (
+              <MenuItem value={headerLang.value} key={headerLang.value}>
                 <Box className={styles.headerLanguageWrapper}>
-                  {headerItem.title}
+                  {headerLang.title}
                   <img
-                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${headerItem.img}.svg`}
-                    alt={headerItem.value}
+                    src={`${FLAG_ICON_BASE_URL}${headerLang.img}.svg`}
+                    alt={headerLang.value}
                     className={styles.icon}
                   />
                 </Box>

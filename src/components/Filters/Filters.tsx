@@ -13,18 +13,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSearchParams } from "react-router-dom";
 
+import { FILTERS_OPTIONS } from "../../constants/FiltersOptions";
+import { SORT_OPTIONS } from "../../constants/SortOptions";
 import { translatePath } from "../../constants/i18nPath";
 import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";
 import { SearchParams, getSearchWith } from "../../utils/searchHelper";
 import SearchLink from "../SearchLink";
 import styles from "./Filters.module.scss";
-
-const filterOptions = [FILTERS.ALL, FILTERS.TWO_D, FILTERS.THREE_D];
-const sortOptions = [
-  { title: "title_A-Z", value: SORT.ASC },
-  { title: "title_Z-A", value: SORT.DESC },
-];
 
 export const Filters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -57,7 +53,7 @@ export const Filters = () => {
           exclusive
           className={styles.filterBtnGroup}
         >
-          {filterOptions.map((option) => (
+          {FILTERS_OPTIONS.map((option) => (
             <SearchLink
               key={option}
               params={{
@@ -87,7 +83,7 @@ export const Filters = () => {
             value={sortState}
             onChange={handleSortChange}
           >
-            {sortOptions.map((option) => (
+            {SORT_OPTIONS.map((option) => (
               <MenuItem key={option.title} value={option.value}>
                 {t(`${translatePath.filters}.${option.title}`)}
               </MenuItem>
