@@ -28,6 +28,16 @@
   }
 }
 
+.headerLogoBox {
+  display: flex;
+  flex-grow: 1;
+
+  align-items: center;
+
+  gap: 1em;
+
+  cursor: pointer;
+}
 .headerToolbar {
   padding: 1em;
   gap: 1.8em;

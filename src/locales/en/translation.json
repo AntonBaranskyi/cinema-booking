@@ -5,7 +5,8 @@
       "movie_all": "all",
       "sort_by": "Sort By",
       "title_A-Z": "Title A - Z",
-      "title_Z-A": "Title Z - A"
+      "title_Z-A": "Title Z - A",
+      "search_placeholder": "Type movie title to search"
     },
     "divider": {
       "divider_item": "Click on a time of the seccion to choose a place"

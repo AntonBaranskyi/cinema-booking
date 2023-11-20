@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.png";
 import { HEADER_LANG } from "../../constants/HeaderLanguage";
@@ -19,23 +20,29 @@ import styles from "./Header.module.scss";
 export const Header = () => {
   const { formattedTime } = useUpdateTime();
   const { currentLanguage, handleChangeLang } = useLanguage();
+  const navigate = useNavigate();
+
+  const handleLogoClick = () => {
+    navigate("/");
+  };
 
   return (
     <AppBar position="static" className={styles.headerMargin}>
       <Container maxWidth="xl">
         <Toolbar className={styles.headerToolbar}>
-          <img src={logo} alt="logo" className={styles.logo} />
-          <Typography
-            className={styles.headerTextLogo}
-            color="white"
-            variant="h5"
-            component="a"
-            href="#"
-            fontWeight={700}
-            letterSpacing={0.2}
-          >
-            Our cinema
-          </Typography>
+          <Box onClick={handleLogoClick} className={styles.headerLogoBox}>
+            <img src={logo} alt="logo" className={styles.logo} />
+            <Typography
+              className={styles.headerTextLogo}
+              color="white"
+              variant="h5"
+              component="h2"
+              fontWeight={700}
+              letterSpacing={0.2}
+            >
+              Our cinema
+            </Typography>
+          </Box>
           <Box className={styles.headerClock}>
             <AccessTimeOutlinedIcon />
             <Typography variant="h6">{formattedTime}</Typography>

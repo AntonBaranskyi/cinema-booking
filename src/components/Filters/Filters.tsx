@@ -99,7 +99,7 @@ export const Filters = () => {
             },
           }}
           type="search"
-          placeholder="Type movie title to search"
+          placeholder={t(`${translatePath.filters}.search_placeholder`)}
           value={query}
           onChange={handleChangeQuery}
         />
