@@ -1,5 +1,5 @@
 import { SelectChangeEvent } from "@mui/material";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { FILTERS } from "../types/filterEnum";
@@ -34,6 +34,10 @@ export const useFilters = () => {
     setSearchWith({ query: event.target.value || null });
   };
 
+  const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {
+    setSearchWith({ page: page === 1 ? null : page.toString() });
+  };
+
   return {
     filter,
     query,
@@ -42,5 +46,6 @@ export const useFilters = () => {
     handleChangeQuery,
     handleSortChange,
     currentPage,
+    handleChangePage,
   };
 };
