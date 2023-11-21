@@ -8,6 +8,7 @@ interface IParams {
   filter: FILTERS;
   sort: SORT;
   lang: Language;
+  query: string | null;
 }
 
 export const filterMovies = ({
@@ -15,6 +16,7 @@ export const filterMovies = ({
   filter,
   sort,
   lang,
+  query,
 }: IParams): IMovie[] => {
   let movieCopy = [...movies];
 
@@ -22,19 +24,25 @@ export const filterMovies = ({
     movieCopy = movieCopy.filter((movie) => movie.format === filter);
   }
 
+  if (query) {
+    const normalizeQuery = query.toLowerCase();
+    movieCopy = movieCopy.filter((movie) => {
+      const titleLang = (
+        lang === "en" ? "title_en" : "title_ua"
+      ) as keyof IMovie;
+
+      const movieTitle = movie[titleLang] as string;
+
+      return movieTitle.toLowerCase().includes(normalizeQuery);
+    });
+  }
+
   if (sort) {
     movieCopy.sort((a, b) => {
-      switch (lang) {
-        case "en":
-          return a.title_en
-            .toLowerCase()
-            .localeCompare(b.title_en.toLowerCase());
+      const titleA = lang === "en" ? a.title_en : a.title_ua;
+      const titleB = lang === "en" ? b.title_en : b.title_ua;
 
-        case "ua":
-          return a.title_ua
-            .toLowerCase()
-            .localeCompare(b.title_ua.toLowerCase());
-      }
+      return titleA.toLowerCase().localeCompare(titleB.toLowerCase());
     });
   }
 

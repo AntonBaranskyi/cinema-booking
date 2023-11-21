@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import language from "./slices/LangSilce";
+import common from "./slices/CommonSilce";
 import movies from "./slices/MoviesSlice";
 
 export const store = configureStore({
   reducer: {
     movies,
-    language,
+    common,
   },
 });
 

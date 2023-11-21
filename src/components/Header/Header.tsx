@@ -4,75 +4,45 @@ import {
   Input,
   MenuItem,
   Select,
-  SelectChangeEvent,
   Toolbar,
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.png";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHooks";
-import { onChangeLanguage } from "../../store/slices/LangSilce";
-import { Language } from "../../types/langType";
+import { HEADER_LANG } from "../../constants/HeaderLanguage";
+import { FLAG_ICON_BASE_URL } from "../../constants/IconURl";
+import { useLanguage } from "../../hooks/useLanguage";
+import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./Header.module.scss";
 
-const headerLangData = [
-  { title: "English", value: "en", img: "GB" },
-  {
-    title: "Ukrainian",
-    value: "ua",
-    img: "UA",
-  },
-];
-
 export const Header = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
+  const { formattedTime } = useUpdateTime();
+  const { currentLanguage, handleChangeLang } = useLanguage();
+  const navigate = useNavigate();
 
-  const { currentLanguage } = useAppSelector((state) => state.language);
-
-  const dispatch = useAppDispatch();
-  const { i18n } = useTranslation();
-
-  useEffect(() => {
-    i18n.changeLanguage(currentLanguage);
-  }, [currentLanguage, i18n]);
-
-  useEffect(() => {
-    const intervalTime = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 60000);
-
-    return () => clearInterval(intervalTime);
-  }, []);
-
-  const formattedTime = currentTime.toLocaleTimeString("en-US", {
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: false,
-  });
-
-  const handleChangeLang = (event: SelectChangeEvent) => {
-    dispatch(onChangeLanguage(event.target.value as Language));
+  const handleLogoClick = () => {
+    navigate("/");
   };
 
   return (
     <AppBar position="static" className={styles.headerMargin}>
       <Container maxWidth="xl">
         <Toolbar className={styles.headerToolbar}>
-          <img src={logo} alt="logo" className={styles.logo} />
-          <Typography
-            className={styles.headerTextLogo}
-            color="white"
-            variant="h5"
-            component="a"
-            href="#"
-            fontWeight={700}
-            letterSpacing={0.2}
-          >
-            Our cinema
-          </Typography>
+          <Box onClick={handleLogoClick} className={styles.headerLogoBox}>
+            <img src={logo} alt="logo" className={styles.logo} />
+            <Typography
+              className={styles.headerTextLogo}
+              color="white"
+              variant="h5"
+              component="h2"
+              fontWeight={700}
+              letterSpacing={0.2}
+            >
+              Our cinema
+            </Typography>
+          </Box>
           <Box className={styles.headerClock}>
             <AccessTimeOutlinedIcon />
             <Typography variant="h6">{formattedTime}</Typography>
@@ -84,13 +54,13 @@ export const Header = () => {
             onChange={handleChangeLang}
             className={styles.headerLanguage}
           >
-            {headerLangData.map((headerItem) => (
-              <MenuItem value={headerItem.value} key={headerItem.value}>
+            {HEADER_LANG.map((headerLang) => (
+              <MenuItem value={headerLang.value} key={headerLang.value}>
                 <Box className={styles.headerLanguageWrapper}>
-                  {headerItem.title}
+                  {headerLang.title}
                   <img
-                    src={`http://purecatamphetamine.github.io/country-flag-icons/3x2/${headerItem.img}.svg`}
-                    alt={headerItem.value}
+                    src={`${FLAG_ICON_BASE_URL}${headerLang.img}.svg`}
+                    alt={headerLang.value}
                     className={styles.icon}
                   />
                 </Box>

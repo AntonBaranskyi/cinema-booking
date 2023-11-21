@@ -1,6 +1,5 @@
 import { Box, Link } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
-import React from "react";
 
 export const BreadcrumbsBlock = () => {
   return (

@@ -5,6 +5,12 @@
   gap: 1.3em;
   margin-bottom: 3em;
 
+  align-items: center;
+
+  @include onPhone {
+    align-items: normal;
+  }
+
   .filterTitle {
     text-transform: uppercase;
   }
@@ -29,6 +35,24 @@
   .filterSortWrapper {
     display: flex;
     align-items: center;
-    min-width: 150px;
+    min-width: 9.4rem;
+  }
+
+  .filterSearchWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    .filterSearch {
+      width: 20rem;
+
+      @include onPhone {
+        width: 100%;
+      }
+    }
+  }
+
+  .filterSelect {
+    height: 3.125rem;
   }
 }

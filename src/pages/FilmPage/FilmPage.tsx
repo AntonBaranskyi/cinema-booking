@@ -6,7 +6,7 @@ import Header from "../../components/Header";
 import MovieInfo from "../../components/MovieInfo";
 import MoviePoster from "../../components/MoviePoster";
 import MovieWidget from "../../components/MovieWidget";
-import { useAppSelector } from "../../hooks/reduxHooks";
+import { useAppSelector } from "../../hooks/useAppSelector";
 import { normalizeTitlePath } from "../../utils/pathTitle";
 import styles from "./FilmPage.module.scss";
 

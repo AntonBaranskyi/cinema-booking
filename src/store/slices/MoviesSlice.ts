@@ -25,12 +25,8 @@ const moviesSlice = createSlice({
       state.filteredMovies = action.payload;
       state.currentPage = 1;
     },
-
-    onPageChange: (state, action: PayloadAction<number>) => {
-      state.currentPage = action.payload;
-    },
   },
 });
 
-export const { onFilterMovies, onPageChange } = moviesSlice.actions;
+export const { onFilterMovies } = moviesSlice.actions;
 export default moviesSlice.reducer;

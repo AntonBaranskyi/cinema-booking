@@ -1,17 +1,17 @@
 @import "../../styles/mixins.scss";
 
 .poster {
-  height: 255px;
-  width: 160px;
+  height: 16rem;
+  width: 10rem;
 
-  border-radius: 6px;
+  border-radius: 0.375em;
   background-size: cover;
 }
 
 .card {
-  width: 400px;
+  width: 25rem;
   background-color: none;
-  height: 300px;
+  height: 18.75rem;
 
   cursor: pointer;
 
@@ -32,7 +32,7 @@
         flex-wrap: wrap;
 
         .cardSessionsItem {
-          max-width: 50px;
+          max-width: 3.125rem;
           width: 100%;
           text-align: center;
           margin: 0 0.2em 1em;
@@ -47,6 +47,7 @@
   }
 
   @include onPhone {
-    width: 350px;
+    margin: 0 auto;
+    width: 21.8rem;
   }
 }

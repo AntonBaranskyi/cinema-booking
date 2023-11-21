@@ -2,6 +2,7 @@
 
 .dividerWrapper {
   margin-bottom: 3em;
+
   &:first-child {
     .MuiDivider-root {
       @include onPhone {
