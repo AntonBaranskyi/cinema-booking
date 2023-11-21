@@ -36,7 +36,11 @@ export const useFilters = () => {
   };
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchWith({ query: event.target.value || null });
+    const inputValue = event.target.value;
+
+    const sanitizedValue = inputValue.replace(/\s+/g, " ");
+
+    setSearchWith({ query: sanitizedValue || null });
   };
 
   const handleChangePage = (_: React.ChangeEvent<unknown>, page: number) => {

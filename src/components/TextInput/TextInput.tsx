@@ -36,9 +36,13 @@ export const TextInput: React.FC<Props> = ({
           height: 50,
         },
 
-        "& .MuiInputBase-input input": {
+        "& .MuiInputBase-input": {
           "&::placeholder": {
             color: "white",
+          },
+
+          "&[type='search']::-webkit-search-cancel-button": {
+            cursor: "pointer",
           },
         },
       }}

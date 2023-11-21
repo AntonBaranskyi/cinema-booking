@@ -1,7 +1,6 @@
 .textInput {
   width: 100%;
-
-  input[type="search"] ::-webkit-search-clear-button {
-    cursor: pointer;
+  &:first-child {
+    
   }
 }
