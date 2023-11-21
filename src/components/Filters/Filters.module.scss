@@ -15,6 +15,12 @@
     text-transform: uppercase;
   }
 
+  .filterLabel {
+    &.Mui-focused {
+      color: white;
+    }
+  }
+
   .filterBtnGroup {
     margin-left: 2em;
 
@@ -43,16 +49,34 @@
     align-items: center;
     gap: 1em;
 
-    .filterSearch {
-      width: 20rem;
+    width: 20rem;
 
-      @include onPhone {
-        width: 100%;
-      }
+    @include onPhone {
+      width: 100%;
     }
   }
 
   .filterSelect {
     height: 3.125rem;
+
+    &:focus + .MuiInputLabel-root.Mui-focused {
+      color: white;
+    }
+  }
+
+  .filterClearWrapper {
+    display: flex;
+    align-items: center;
+
+    @include onPhone {
+      width: 100%;
+    }
+
+    .filterClear {
+      width: 100%;
+
+      color: #fff;
+      height: 50px; 
+    }
   }
 }

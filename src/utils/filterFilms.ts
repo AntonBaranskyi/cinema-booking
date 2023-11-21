@@ -25,11 +25,11 @@ export const filterMovies = ({
   }
 
   if (query) {
-    const normalizeQuery = query.toLowerCase();
+    const normalizeQuery = query.toLowerCase().trim();
     movieCopy = movieCopy.filter((movie) => {
-      const titleLang = (
-        lang === "en" ? "title_en" : "title_ua"
-      ) as keyof IMovie;
+      const titleLang = (lang === "en" ? "title_en" : "title_ua")
+        .toLowerCase()
+        .trim() as keyof IMovie;
 
       const movieTitle = movie[titleLang] as string;
 

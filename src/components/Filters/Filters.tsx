@@ -1,14 +1,14 @@
 import {
   Box,
+  Button,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
-  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import cn from "classnames";
 import { useTranslation } from "react-i18next";
 
 import { FILTERS_OPTIONS } from "../../constants/FiltersOptions";
@@ -16,14 +16,23 @@ import { SORT_OPTIONS } from "../../constants/SortOptions";
 import { translatePath } from "../../constants/i18nPath";
 import { useFilters } from "../../hooks/useFilters";
 import { FILTERS } from "../../types/filterEnum";
+import { SORT } from "../../types/sortEnum";
 import SearchLink from "../SearchLink";
+import TextInput from "../TextInput";
 import styles from "./Filters.module.scss";
 
 export const Filters = () => {
   const { t } = useTranslation();
 
-  const { filter, query, sortState, handleChangeQuery, handleSortChange } =
-    useFilters();
+  const {
+    filter,
+    query,
+    sortState,
+    handleChangeQuery,
+    handleSortChange,
+    filterExist,
+    handleClearAllFilters,
+  } = useFilters();
 
   return (
     <Box className={styles.filterWrapper}>
@@ -41,11 +50,13 @@ export const Filters = () => {
               key={option}
               params={{
                 filter: option === FILTERS.ALL ? null : option,
-                page: "1",
+                page: null,
               }}
             >
               <ToggleButton
-                className={`${option === filter ? styles.filterActiveBtn : ""}`}
+                className={cn({
+                  [styles.filterActiveBtn]: option === filter,
+                })}
                 value={option}
               >
                 {option === FILTERS.ALL
@@ -59,14 +70,16 @@ export const Filters = () => {
 
       <Box className={styles.filterSortWrapper}>
         <FormControl fullWidth>
-          <InputLabel>{t(`${translatePath.filters}.sort_by`)}</InputLabel>
-
           <Select
             variant="outlined"
             value={sortState}
             onChange={handleSortChange}
             className={styles.filterSelect}
+            defaultValue={SORT.DEFAULT}
           >
+            <MenuItem disabled value={SORT.DEFAULT}>
+              {t(`${translatePath.filters}.choose_method`)}
+            </MenuItem>
             {SORT_OPTIONS.map((option) => (
               <MenuItem key={option.title} value={option.value}>
                 {t(`${translatePath.filters}.${option.title}`)}
@@ -77,33 +90,25 @@ export const Filters = () => {
       </Box>
 
       <Box className={styles.filterSearchWrapper}>
-        <TextField
-          className={styles.filterSearch}
-          inputProps={{
-            sx: {
-              "&::placeholder": {
-                color: "white",
-                opacity: 1,
-              },
-            },
-          }}
-          sx={{
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-
-            "& .MuiInputBase-input input": {
-              "&::placeholder": {
-                color: "white",
-              },
-            },
-          }}
-          type="search"
-          placeholder={t(`${translatePath.filters}.search_placeholder`)}
+        <TextInput
           value={query}
           onChange={handleChangeQuery}
+          placeholderRow="search_placeholder"
+          type="search"
         />
       </Box>
+
+      {filterExist && (
+        <Box className={styles.filterClearWrapper}>
+          <Button
+            variant="outlined"
+            className={styles.filterClear}
+            onClick={handleClearAllFilters}
+          >
+            {t(`${translatePath.filters}.clear_filters`)}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };
