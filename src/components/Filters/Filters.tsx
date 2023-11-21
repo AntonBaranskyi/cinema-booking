@@ -80,7 +80,11 @@ export const Filters = () => {
       </Box>
 
       <Box className={styles.filterSearchWrapper}>
-        <TextInput value={query} onChange={handleChangeQuery} />
+        <TextInput
+          value={query}
+          onChange={handleChangeQuery}
+          placeholderRow="search_placeholder"
+        />
       </Box>
     </Box>
   );

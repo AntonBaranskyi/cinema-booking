@@ -8,9 +8,14 @@ import styles from "./TextInput.module.scss";
 type Props = {
   value: string | null;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholderRow: string;
 };
 
-export const TextInput: React.FC<Props> = ({ value, onChange }) => {
+export const TextInput: React.FC<Props> = ({
+  value,
+  onChange,
+  placeholderRow,
+}) => {
   const { t } = useTranslation();
 
   return (
@@ -36,7 +41,7 @@ export const TextInput: React.FC<Props> = ({ value, onChange }) => {
         },
       }}
       type="search"
-      placeholder={t(`${translatePath.filters}.search_placeholder`)}
+      placeholder={t(`${translatePath.filters}.${placeholderRow}`)}
       value={value}
       onChange={onChange}
     />
