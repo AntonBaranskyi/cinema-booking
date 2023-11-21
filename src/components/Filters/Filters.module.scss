@@ -42,14 +42,6 @@
     display: flex;
     align-items: center;
     gap: 1em;
-
-    .filterSearch {
-      width: 20rem;
-
-      @include onPhone {
-        width: 100%;
-      }
-    }
   }
 
   .filterSelect {

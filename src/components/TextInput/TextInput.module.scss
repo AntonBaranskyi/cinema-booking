@@ -1,0 +1,9 @@
+@import "../../styles/mixins.scss";
+
+.textInput {
+  width: 20rem;
+
+  @include onPhone {
+    width: 100%;
+  }
+}

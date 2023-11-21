@@ -4,11 +4,11 @@ import {
   InputLabel,
   MenuItem,
   Select,
-  TextField,
   ToggleButton,
   ToggleButtonGroup,
   Typography,
 } from "@mui/material";
+import cn from "classnames";
 import { useTranslation } from "react-i18next";
 
 import { FILTERS_OPTIONS } from "../../constants/FiltersOptions";
@@ -17,6 +17,7 @@ import { translatePath } from "../../constants/i18nPath";
 import { useFilters } from "../../hooks/useFilters";
 import { FILTERS } from "../../types/filterEnum";
 import SearchLink from "../SearchLink";
+import TextInput from "../TextInput";
 import styles from "./Filters.module.scss";
 
 export const Filters = () => {
@@ -45,7 +46,9 @@ export const Filters = () => {
               }}
             >
               <ToggleButton
-                className={`${option === filter ? styles.filterActiveBtn : ""}`}
+                className={cn({
+                  [styles.filterActiveBtn]: option === filter,
+                })}
                 value={option}
               >
                 {option === FILTERS.ALL
@@ -77,32 +80,7 @@ export const Filters = () => {
       </Box>
 
       <Box className={styles.filterSearchWrapper}>
-        <TextField
-          className={styles.filterSearch}
-          inputProps={{
-            sx: {
-              "&::placeholder": {
-                color: "white",
-                opacity: 1,
-              },
-            },
-          }}
-          sx={{
-            "& .MuiInputBase-root": {
-              height: 50,
-            },
-
-            "& .MuiInputBase-input input": {
-              "&::placeholder": {
-                color: "white",
-              },
-            },
-          }}
-          type="search"
-          placeholder={t(`${translatePath.filters}.search_placeholder`)}
-          value={query}
-          onChange={handleChangeQuery}
-        />
+        <TextInput value={query} onChange={handleChangeQuery} />
       </Box>
     </Box>
   );
