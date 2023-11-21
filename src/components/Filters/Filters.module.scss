@@ -15,6 +15,12 @@
     text-transform: uppercase;
   }
 
+  .filterLabel {
+    &.Mui-focused {
+      color: white; // Колір тексту лейбла при фокусі
+    }
+  }
+
   .filterBtnGroup {
     margin-left: 2em;
 
@@ -42,9 +48,35 @@
     display: flex;
     align-items: center;
     gap: 1em;
+
+    width: 20rem;
+
+    @include onPhone {
+      width: 100%;
+    }
   }
 
   .filterSelect {
     height: 3.125rem;
+
+    &:focus + .MuiInputLabel-root.Mui-focused {
+      color: white; // Колір тексту лейбла після фокусування на селекті
+    }
+  }
+
+  .filterClearWrapper {
+    display: flex;
+    align-items: center;
+
+    @include onPhone {
+      width: 100%;
+    }
+
+    .filterClear {
+      width: 100%;
+
+      color: #fff;
+      height: 50px;
+    }
   }
 }

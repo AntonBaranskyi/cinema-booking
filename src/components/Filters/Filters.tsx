@@ -1,7 +1,7 @@
 import {
   Box,
+  Button,
   FormControl,
-  InputLabel,
   MenuItem,
   Select,
   ToggleButton,
@@ -16,6 +16,7 @@ import { SORT_OPTIONS } from "../../constants/SortOptions";
 import { translatePath } from "../../constants/i18nPath";
 import { useFilters } from "../../hooks/useFilters";
 import { FILTERS } from "../../types/filterEnum";
+import { SORT } from "../../types/sortEnum";
 import SearchLink from "../SearchLink";
 import TextInput from "../TextInput";
 import styles from "./Filters.module.scss";
@@ -23,8 +24,15 @@ import styles from "./Filters.module.scss";
 export const Filters = () => {
   const { t } = useTranslation();
 
-  const { filter, query, sortState, handleChangeQuery, handleSortChange } =
-    useFilters();
+  const {
+    filter,
+    query,
+    sortState,
+    handleChangeQuery,
+    handleSortChange,
+    filterExist,
+    handleClearAllFilters,
+  } = useFilters();
 
   return (
     <Box className={styles.filterWrapper}>
@@ -42,7 +50,7 @@ export const Filters = () => {
               key={option}
               params={{
                 filter: option === FILTERS.ALL ? null : option,
-                page: "1",
+                page: null,
               }}
             >
               <ToggleButton
@@ -62,14 +70,16 @@ export const Filters = () => {
 
       <Box className={styles.filterSortWrapper}>
         <FormControl fullWidth>
-          <InputLabel>{t(`${translatePath.filters}.sort_by`)}</InputLabel>
-
           <Select
             variant="outlined"
             value={sortState}
             onChange={handleSortChange}
             className={styles.filterSelect}
+            defaultValue={SORT.DEFAULT}
           >
+            <MenuItem disabled value={SORT.DEFAULT}>
+              {t(`${translatePath.filters}.choose_method`)}
+            </MenuItem>
             {SORT_OPTIONS.map((option) => (
               <MenuItem key={option.title} value={option.value}>
                 {t(`${translatePath.filters}.${option.title}`)}
@@ -84,8 +94,21 @@ export const Filters = () => {
           value={query}
           onChange={handleChangeQuery}
           placeholderRow="search_placeholder"
+          type="search"
         />
       </Box>
+
+      {filterExist && (
+        <Box className={styles.filterClearWrapper}>
+          <Button
+            variant="outlined"
+            className={styles.filterClear}
+            onClick={handleClearAllFilters}
+          >
+            {t(`${translatePath.filters}.clear_filters`)}
+          </Button>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -6,7 +6,9 @@
       "sort_by": "Sort By",
       "title_A-Z": "Title A - Z",
       "title_Z-A": "Title Z - A",
-      "search_placeholder": "Type movie title to search"
+      "search_placeholder": "Type movie title to search",
+      "clear_filters": "Clear all filters",
+      "choose_method": "Choose sort method"
     },
     "divider": {
       "divider_item": "Click on a time of the seccion to choose a place"

@@ -1,9 +1,7 @@
-@import "../../styles/mixins.scss";
-
 .textInput {
-  width: 20rem;
+  width: 100%;
 
-  @include onPhone {
-    width: 100%;
+  input[type="search"] ::-webkit-search-clear-button {
+    cursor: pointer;
   }
 }

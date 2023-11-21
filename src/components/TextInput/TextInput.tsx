@@ -9,12 +9,14 @@ type Props = {
   value: string | null;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   placeholderRow: string;
+  type?: string;
 };
 
 export const TextInput: React.FC<Props> = ({
   value,
   onChange,
   placeholderRow,
+  type,
 }) => {
   const { t } = useTranslation();
 
@@ -40,9 +42,9 @@ export const TextInput: React.FC<Props> = ({
           },
         },
       }}
-      type="search"
+      type={type}
       placeholder={t(`${translatePath.filters}.${placeholderRow}`)}
-      value={value}
+      value={value || ""}
       onChange={onChange}
     />
   );

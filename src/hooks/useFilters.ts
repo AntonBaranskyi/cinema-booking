@@ -8,7 +8,7 @@ import { SearchParams, getSearchWith } from "../utils/searchHelper";
 
 export const useFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-  const [sortState, setSortState] = useState<SORT>(SORT.ASC);
+  const [sortState, setSortState] = useState<SORT>(SORT.DEFAULT);
 
   const filter = (searchParams.get("filter") || FILTERS.ALL) as FILTERS;
 
@@ -22,7 +22,9 @@ export const useFilters = () => {
     const selectedValue = event.target.value as SORT;
 
     setSortState(selectedValue);
-    setSearchWith({ order: selectedValue });
+    setSearchWith({
+      order: selectedValue !== SORT.DEFAULT ? selectedValue : null,
+    });
   };
 
   const setSearchWith = (params: SearchParams) => {
@@ -38,6 +40,17 @@ export const useFilters = () => {
     setSearchWith({ page: page === 1 ? null : page.toString() });
   };
 
+  const handleClearAllFilters = () => {
+    setSearchWith({
+      page: null,
+      query: null,
+      order: null,
+      filter: null,
+    });
+
+    setSortState(SORT.DEFAULT);
+  };
+
   return {
     filter,
     query,
@@ -47,5 +60,7 @@ export const useFilters = () => {
     handleSortChange,
     currentPage,
     handleChangePage,
+    handleClearAllFilters,
+    filterExist: Boolean(filter !== FILTERS.ALL || query || sort),
   };
 };
