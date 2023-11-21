@@ -13,19 +13,21 @@ export const usePrepareMovie = () => {
 
   const { currentLanguage } = useAppSelector((state) => state.common);
   const dispatch = useAppDispatch();
-  const { filter, sort, query, currentPage } = useFilters();
+  const { filter, sort, debouncedValue, currentPage } = useFilters();
 
   useEffect(() => {
+    console.log("remount");
+
     const visibleMovies = filterMovies({
       movies: allMovies,
       filter,
       sort,
       lang: currentLanguage,
-      query,
+      query: debouncedValue,
     });
 
     dispatch(onFilterMovies(visibleMovies));
-  }, [allMovies, currentLanguage, dispatch, filter, query, sort]);
+  }, [allMovies, currentLanguage, debouncedValue, dispatch, filter, sort]);
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;

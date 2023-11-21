@@ -1,16 +1,19 @@
 import { Grid, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
+import { translatePath } from "../../constants/i18nPath";
 import { usePrepareMovie } from "../../hooks/usePrepareMovie";
 import MovieCard from "../MovieCard";
 
 export const MoviesList = () => {
+  const { t } = useTranslation();
   const { currentMovies, noMoviesFound } = usePrepareMovie();
 
   return (
     <Grid justifyContent="center" container columnGap={2} rowGap={4}>
       {noMoviesFound ? (
         <Typography variant="h6" color="textSecondary">
-          No movies found.
+          {t(`${translatePath.info}.no_movie`)}
         </Typography>
       ) : (
         currentMovies.map((movie) => (

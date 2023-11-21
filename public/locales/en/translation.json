@@ -12,6 +12,9 @@
     },
     "divider": {
       "divider_item": "Click on a time of the seccion to choose a place"
+    },
+    "info": {
+      "no_movie": "No movies found."
     }
   }
 }

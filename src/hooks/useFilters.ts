@@ -5,6 +5,7 @@ import { useSearchParams } from "react-router-dom";
 import { FILTERS } from "../types/filterEnum";
 import { SORT } from "../types/sortEnum";
 import { SearchParams, getSearchWith } from "../utils/searchHelper";
+import { useDebounce } from "./useDebounce";
 
 export const useFilters = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,6 +16,8 @@ export const useFilters = () => {
   const query = searchParams.get("query");
   const pageParam = searchParams.get("page");
   const sort = searchParams.get("order") as SORT;
+
+  const { debouncedValue } = useDebounce(query || "", 300);
 
   const currentPage = (pageParam ? +pageParam : 1) as number;
 
@@ -53,6 +56,7 @@ export const useFilters = () => {
 
   return {
     filter,
+    debouncedValue,
     query,
     sort,
     sortState,
