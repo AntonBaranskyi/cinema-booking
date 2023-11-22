@@ -4,10 +4,11 @@ import { useNavigate } from "react-router-dom";
 
 import poster from "../../assets/movie_poster.jpg";
 import { SESSIONS } from "../../constants/Sesions";
-import { useAppSelector } from "../../hooks/useAppSelector";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
+import { onToggleWidget } from "../../store/slices/CommonSilce";
 import { IMovie } from "../../types/movie";
 import { prepareTitle } from "../../utils/normalizeTitle";
-import { getTitleLang } from "../../utils/prepareTitle";
 import styles from "./MovieCard.module.scss";
 
 type Props = {
@@ -15,15 +16,21 @@ type Props = {
 };
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
-  const { currentLanguage } = useAppSelector((state) => state.common);
   const navigate = useNavigate();
-
-  const langTitle = getTitleLang(currentLanguage) as keyof IMovie;
+  const { langTitle } = useMovieInfoTranslations();
+  const dispatch = useAppDispatch();
 
   const normalizeTitle = prepareTitle(movie[langTitle] as string);
 
   const handleNavigate = () => {
-    navigate(`/film/${normalizeTitle.toLowerCase().replace(" ", "_")}`);
+    const normalizeEngTitle = movie.title_en.toLowerCase().replace(/ /g, "_");
+    console.log(normalizeEngTitle);
+
+    navigate(`/film/${normalizeEngTitle}`);
+  };
+
+  const handleHourClick = () => {
+    dispatch(onToggleWidget(true));
   };
 
   return (
@@ -44,7 +51,11 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
 
           <Box className={styles.cardSessions}>
             {SESSIONS.map((hour) => (
-              <Box key={hour} className={styles.cardSessionsItem}>
+              <Box
+                key={hour}
+                className={styles.cardSessionsItem}
+                onClick={handleHourClick}
+              >
                 <Typography>{hour}</Typography>
 
                 {movie.format === "3D" && (

@@ -1,3 +1,3 @@
 export const normalizeTitlePath = (title: string) => {
-  return title.replace("_", " ");
+  return title.replace(/_/g, " ");
 };

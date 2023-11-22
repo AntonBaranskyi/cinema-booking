@@ -1,26 +1,16 @@
 import { Container, Grid } from "@mui/material";
-import { useParams } from "react-router-dom";
 
+import BookingWidget from "../../components/BookingWidget";
 import BreadcrumbsBlock from "../../components/BreadcrumbsBlock";
 import Header from "../../components/Header";
 import MovieInfo from "../../components/MovieInfo";
 import MoviePoster from "../../components/MoviePoster";
 import MovieWidget from "../../components/MovieWidget";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { normalizeTitlePath } from "../../utils/pathTitle";
+import { useMoviePageData } from "../../hooks/useMoviePageData";
 import styles from "./FilmPage.module.scss";
 
 export const FilmPage = () => {
-  const { id } = useParams();
-  const { allMovies } = useAppSelector((state) => state.movies);
-
-  const titleForPath = normalizeTitlePath(id as string);
-
-  const currentMovie = allMovies.find(
-    (movie) => movie.title_en.toLowerCase() === titleForPath,
-  );
-
-  console.log(currentMovie);
+  const { currentMovie } = useMoviePageData();
 
   return (
     <>
@@ -42,6 +32,7 @@ export const FilmPage = () => {
           </Grid>
         </Grid>
       </Container>
+      <BookingWidget />
     </>
   );
 };

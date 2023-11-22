@@ -4,6 +4,7 @@ import { Language } from "../../types/langType";
 
 const initialState = {
   currentLanguage: (localStorage.getItem("lang") || "en") as Language,
+  isOpenBooking: true,
 };
 
 const langSlice = createSlice({
@@ -13,8 +14,12 @@ const langSlice = createSlice({
     onChangeLanguage: (state, action: PayloadAction<Language>) => {
       state.currentLanguage = action.payload;
     },
+
+    onToggleWidget: (state, action: PayloadAction<boolean>) => {
+      state.isOpenBooking = action.payload;
+    },
   },
 });
 
-export const { onChangeLanguage } = langSlice.actions;
+export const { onChangeLanguage, onToggleWidget } = langSlice.actions;
 export default langSlice.reducer;

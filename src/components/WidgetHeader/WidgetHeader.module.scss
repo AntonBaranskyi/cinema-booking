@@ -1,0 +1,32 @@
+@import "../../styles/mixins.scss";
+
+.BookingAppBar {
+  margin-bottom: 2.375rem;
+  padding: 10px 0;
+
+  .BookingPoster {
+    width: 100px;
+    height: 150px;
+  }
+
+  .AppBarInfo {
+    display: flex;
+    align-items: center;
+
+    flex-grow: 1;
+
+    gap: 2rem;
+
+    @include onPhone {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .widgetToolbar {
+    @include onPhone {
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}

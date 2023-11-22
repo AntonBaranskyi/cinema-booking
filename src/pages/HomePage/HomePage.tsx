@@ -1,5 +1,6 @@
 import { Box, Container } from "@mui/material";
 
+import BookingWidget from "../../components/BookingWidget";
 import DividerBlock from "../../components/DividerBlock";
 import Filters from "../../components/Filters";
 import Header from "../../components/Header";
@@ -20,5 +21,6 @@ export const HomePage = () => (
 
       <Pagination />
     </Container>
+    <BookingWidget />
   </>
 );

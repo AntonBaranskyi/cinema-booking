@@ -6,14 +6,12 @@ import { IMovie } from "../../types/movie";
 interface IState {
   allMovies: IMovie[];
   filteredMovies: IMovie[];
-  currentPage: number;
   moviesPerPage: number;
 }
 
 const initialState: IState = {
   allMovies: moviesFromServer,
   filteredMovies: moviesFromServer,
-  currentPage: 1,
   moviesPerPage: 5,
 };
 
@@ -23,7 +21,6 @@ const moviesSlice = createSlice({
   reducers: {
     onFilterMovies: (state, action: PayloadAction<IMovie[]>) => {
       state.filteredMovies = action.payload;
-      state.currentPage = 1;
     },
   },
 });
