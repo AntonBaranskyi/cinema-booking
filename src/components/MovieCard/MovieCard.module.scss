@@ -1,0 +1,51 @@
+@import "../../styles/mixins.scss";
+
+.poster {
+  height: 16rem;
+  width: 10rem;
+
+  border-radius: 0.375em;
+  background-size: cover;
+}
+
+.card {
+  width: 25rem;
+  background-color: none;
+  height: 18.75rem;
+
+  .cardContent {
+    display: flex;
+    gap: 2em;
+
+    .cardInfo {
+      display: flex;
+      flex-direction: column;
+
+      .cardTitle {
+        margin-bottom: 1em;
+      }
+
+      .cardSessions {
+        display: flex;
+        flex-wrap: wrap;
+
+        .cardSessionsItem {
+          max-width: 3.125rem;
+          width: 100%;
+          text-align: center;
+          margin: 0 0.2em 1em;
+          cursor: pointer;
+
+          .itemFormat {
+            font-size: 0.7em;
+          }
+        }
+      }
+    }
+  }
+
+  @include onPhone {
+    margin: 0 auto;
+    width: 21.8rem;
+  }
+}

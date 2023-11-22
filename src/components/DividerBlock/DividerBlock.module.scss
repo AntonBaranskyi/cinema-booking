@@ -1,0 +1,19 @@
+@import "../../styles/mixins.scss";
+
+.dividerWrapper {
+  margin-bottom: 3em;
+
+  &:first-child {
+    .MuiDivider-root {
+      @include onPhone {
+        white-space: initial;
+      }
+    }
+  }
+
+  .dividerBox {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+  }
+}

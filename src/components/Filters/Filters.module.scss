@@ -1,0 +1,82 @@
+@import "../../styles/mixins.scss";
+
+.filterWrapper {
+  display: flex;
+  gap: 1.3em;
+  margin-bottom: 3em;
+
+  align-items: center;
+
+  @include onPhone {
+    align-items: normal;
+  }
+
+  .filterTitle {
+    text-transform: uppercase;
+  }
+
+  .filterLabel {
+    &.Mui-focused {
+      color: white;
+    }
+  }
+
+  .filterBtnGroup {
+    margin-left: 2em;
+
+    .filterActiveBtn {
+      background-color: red;
+    }
+  }
+
+  .filtersFormats {
+    display: flex;
+    align-items: center;
+  }
+  @include onPhone {
+    flex-direction: column;
+    gap: 3em;
+  }
+
+  .filterSortWrapper {
+    display: flex;
+    align-items: center;
+    min-width: 9.4rem;
+  }
+
+  .filterSearchWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    width: 20rem;
+
+    @include onPhone {
+      width: 100%;
+    }
+  }
+
+  .filterSelect {
+    height: 3.125rem;
+
+    &:focus + .MuiInputLabel-root.Mui-focused {
+      color: white;
+    }
+  }
+
+  .filterClearWrapper {
+    display: flex;
+    align-items: center;
+
+    @include onPhone {
+      width: 100%;
+    }
+
+    .filterClear {
+      width: 100%;
+
+      color: #fff;
+      height: 50px; 
+    }
+  }
+}
