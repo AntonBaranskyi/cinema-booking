@@ -7,6 +7,7 @@ const initialState = {
   isOpenBooking: false,
   isExpireBooking: false,
   currentMovieId: "",
+  currentSession: "",
 };
 
 const langSlice = createSlice({
@@ -19,10 +20,15 @@ const langSlice = createSlice({
 
     onToggleWidget: (
       state,
-      action: PayloadAction<{ isOpen: boolean; movieId: string }>,
+      action: PayloadAction<{
+        isOpen: boolean;
+        movieId: string;
+        session: string;
+      }>,
     ) => {
       state.isOpenBooking = action.payload.isOpen;
       state.currentMovieId = action.payload.movieId;
+      state.currentSession = action.payload.session;
     },
 
     onToggleExpireModal: (state, action: PayloadAction<boolean>) => {

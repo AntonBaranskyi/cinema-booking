@@ -9,9 +9,12 @@ export const TicketsListWidget = () => {
     (state) => state.tickets,
   );
 
-  const { currentMovieId } = useAppSelector((state) => state.common);
+  const { currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
 
-  const ticketsForCurrentMovie = ticketsByMovie[currentMovieId] || [];
+  const ticketsForCurrentMovie =
+    ticketsByMovie[currentMovieId]?.[currentSession] || [];
 
   const totalTicketsPrice = movieStats[currentMovieId]?.ticketsMoviePrice || 0;
   const totalTicketsCount = movieStats[currentMovieId]?.ticketsMovieCount || 0;

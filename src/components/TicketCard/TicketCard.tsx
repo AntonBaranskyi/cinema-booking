@@ -14,10 +14,18 @@ type Props = {
 
 export const TicketCard: React.FC<Props> = ({ ticket }) => {
   const dispatch = useAppDispatch();
-  const { currentMovieId } = useAppSelector((state) => state.common);
+  const { currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
 
   const handleDeleteTicket = () => {
-    dispatch(onDeleteTicket({ movieId: currentMovieId, ticketId: ticket.id }));
+    dispatch(
+      onDeleteTicket({
+        movieId: currentMovieId,
+        ticketId: ticket.id,
+        sessionTime: currentSession,
+      }),
+    );
   };
 
   return (

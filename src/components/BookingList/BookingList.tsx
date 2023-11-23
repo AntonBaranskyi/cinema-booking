@@ -13,17 +13,33 @@ export const BookingList = () => {
   const dispatch = useAppDispatch();
   const { ticketsByMovie } = useAppSelector((state) => state.tickets);
 
-  const { currentMovieId } = useAppSelector((state) => state.common);
+  const { currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
 
-  const ticketsForCurrentMovie = ticketsByMovie[currentMovieId] || [];
+  const ticketsForCurrentMovie =
+    ticketsByMovie[currentMovieId]?.[currentSession] || [];
 
   const handleSeatClick = (seat: ISeatData) => {
-    const currentMovieTickets = ticketsByMovie[currentMovieId];
+    const currentMovieTickets =
+      ticketsByMovie[currentMovieId]?.[currentSession] || [];
 
     if (currentMovieTickets?.includes(seat)) {
-      dispatch(onDeleteTicket({ movieId: currentMovieId, ticketId: seat.id }));
+      dispatch(
+        onDeleteTicket({
+          movieId: currentMovieId,
+          ticketId: seat.id,
+          sessionTime: currentSession,
+        }),
+      );
     } else {
-      dispatch(onAddTicket({ movieId: currentMovieId, ticket: seat }));
+      dispatch(
+        onAddTicket({
+          movieId: currentMovieId,
+          ticket: seat,
+          sessionTime: currentSession,
+        }),
+      );
     }
   };
 

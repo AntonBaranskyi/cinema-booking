@@ -7,13 +7,16 @@ import styles from "./WidgetFooter.module.scss";
 
 export const WidgetFooter = () => {
   const dispatch = useAppDispatch();
-  const { currentMovieId } = useAppSelector((state) => state.common);
+  const { currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
   const { ticketsByMovie } = useAppSelector((state) => state.tickets);
 
-  const ticketsForCurrentMovie = ticketsByMovie[currentMovieId] || [];
+  const ticketsForCurrentMovie =
+    ticketsByMovie[currentMovieId]?.[currentSession] || [];
 
   const handleCloseModal = () => {
-    dispatch(onToggleWidget({ isOpen: false, movieId: "" }));
+    dispatch(onToggleWidget({ isOpen: false, movieId: "", session: "" }));
   };
 
   return (

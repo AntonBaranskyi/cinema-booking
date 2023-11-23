@@ -8,7 +8,9 @@ import styles from "./WidgetHeader.module.scss";
 export const WidgetHeader = () => {
   const { timer, formatedTimer } = useUpdateTime();
 
-  const { currentMovieId } = useAppSelector((state) => state.common);
+  const { currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
   const { allMovies } = useAppSelector((state) => state.movies);
 
   const currentMovie = allMovies.find(
@@ -24,10 +26,11 @@ export const WidgetHeader = () => {
             <Box>
               <Typography variant="h4">{currentMovie?.title_en}</Typography>
               <Typography paragraph>
-                22 листопада 11:00 · Основний зал · Старт
+                {new Date().getDate()} листопада {currentSession} · Основний зал
+                · Старт
               </Typography>
               <Typography paragraph color="gray">
-                вулиця Івана Миколайчука, 15А, м.Київ
+                вулиця Гоголя 22, м. Полтава,
               </Typography>
             </Box>
           </Box>

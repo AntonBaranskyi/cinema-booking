@@ -29,8 +29,14 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
     navigate(`/film/${normalizeEngTitle}`);
   };
 
-  const handleHourClick = () => {
-    dispatch(onToggleWidget({ isOpen: true, movieId: movie.title_en }));
+  const handleHourClick = (hour: string) => {
+    dispatch(
+      onToggleWidget({
+        isOpen: true,
+        movieId: movie.title_en,
+        session: hour,
+      }),
+    );
   };
 
   return (
@@ -54,7 +60,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
               <Box
                 key={hour}
                 className={styles.cardSessionsItem}
-                onClick={handleHourClick}
+                onClick={() => handleHourClick(hour)}
               >
                 <Typography>{hour}</Typography>
 
