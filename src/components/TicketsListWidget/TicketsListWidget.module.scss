@@ -1,0 +1,16 @@
+.TiketsWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  border-radius: 0.8em 0.8em 0 0;
+  background-color: #292929;
+
+  padding: 1rem;
+
+  .TicketsInfo {
+    display: flex;
+
+    justify-content: space-between;
+  }
+}

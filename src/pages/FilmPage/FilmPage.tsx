@@ -2,6 +2,7 @@ import { Container, Grid } from "@mui/material";
 
 import BookingWidget from "../../components/BookingWidget";
 import BreadcrumbsBlock from "../../components/BreadcrumbsBlock";
+import ExpireDialog from "../../components/ExpireDialog";
 import Header from "../../components/Header";
 import MovieInfo from "../../components/MovieInfo";
 import MoviePoster from "../../components/MoviePoster";
@@ -33,6 +34,7 @@ export const FilmPage = () => {
         </Grid>
       </Container>
       <BookingWidget />
+      <ExpireDialog />
     </>
   );
 };

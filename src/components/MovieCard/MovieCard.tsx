@@ -30,7 +30,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
   };
 
   const handleHourClick = () => {
-    dispatch(onToggleWidget(true));
+    dispatch(onToggleWidget({ isOpen: true, movieId: movie.title_en }));
   };
 
   return (

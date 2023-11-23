@@ -1,0 +1,25 @@
+@import "../../styles/mixins.scss";
+
+.TicketCard {
+  display: flex;
+
+  // gap: 5rem;
+  justify-content: space-between;
+  padding: 16px 10px 16px 16px;
+
+  border: 1px solid red;
+  border-radius: 0.3rem;
+
+  position: relative;
+
+  @include onPhone {
+    gap: 1.5rem;
+  }
+
+  .TicketIcon {
+    // position: absolute;
+    // right: 15px;
+
+    cursor: pointer;
+  }
+}
