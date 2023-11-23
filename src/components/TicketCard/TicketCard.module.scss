@@ -3,9 +3,8 @@
 .TicketCard {
   display: flex;
 
-  // gap: 5rem;
   justify-content: space-between;
-  padding: 16px 10px 16px 16px;
+  padding: 1rem 0.625rem 1rem 1rem;
 
   border: 1px solid red;
   border-radius: 0.3rem;
@@ -17,9 +16,6 @@
   }
 
   .TicketIcon {
-    // position: absolute;
-    // right: 15px;
-
     cursor: pointer;
   }
 }

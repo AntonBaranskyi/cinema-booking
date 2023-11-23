@@ -29,7 +29,7 @@ export const FilmPage = () => {
           </Grid>
 
           <Grid item lg={3} sm={12} className={styles.widget}>
-            <MovieWidget />
+            {currentMovie && <MovieWidget currentMovie={currentMovie} />}
           </Grid>
         </Grid>
       </Container>

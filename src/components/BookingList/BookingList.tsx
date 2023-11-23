@@ -1,47 +1,13 @@
 import { Box, Button, Grid, Tooltip, Typography } from "@mui/material";
 
 import { SEATS_DATA_REGULAR } from "../../constants/SeatsData";
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { onAddTicket, onDeleteTicket } from "../../store/slices/TicketsSlice";
-import { ISeatData } from "../../types/seatsDataType";
+import { useTicketsData } from "../../hooks/useTicketsData";
 import styles from "./BookingList.module.scss";
 
 export const BookingList = () => {
   const rows = new Set(SEATS_DATA_REGULAR.map((seat) => seat.row));
 
-  const dispatch = useAppDispatch();
-  const { ticketsByMovie } = useAppSelector((state) => state.tickets);
-
-  const { currentMovieId, currentSession } = useAppSelector(
-    (state) => state.common,
-  );
-
-  const ticketsForCurrentMovie =
-    ticketsByMovie[currentMovieId]?.[currentSession] || [];
-
-  const handleSeatClick = (seat: ISeatData) => {
-    const currentMovieTickets =
-      ticketsByMovie[currentMovieId]?.[currentSession] || [];
-
-    if (currentMovieTickets?.includes(seat)) {
-      dispatch(
-        onDeleteTicket({
-          movieId: currentMovieId,
-          ticketId: seat.id,
-          sessionTime: currentSession,
-        }),
-      );
-    } else {
-      dispatch(
-        onAddTicket({
-          movieId: currentMovieId,
-          ticket: seat,
-          sessionTime: currentSession,
-        }),
-      );
-    }
-  };
+  const { handleChooseTicket, ticketsForCurrentMovie } = useTicketsData();
 
   return (
     <Box>
@@ -68,7 +34,7 @@ export const BookingList = () => {
                 }
               >
                 <Button
-                  onClick={() => handleSeatClick(seat)}
+                  onClick={() => handleChooseTicket(seat)}
                   size="large"
                   variant={
                     ticketsForCurrentMovie.includes(seat)

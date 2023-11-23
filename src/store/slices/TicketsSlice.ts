@@ -6,7 +6,12 @@ type State = {
   ticketsByMovie: Record<string, Record<string, ISeatData[]>>;
   movieStats: Record<
     string,
-    { ticketsMoviePrice: number; ticketsMovieCount: number }
+    {
+      sessions: Record<
+        string,
+        { ticketsMoviePrice: number; ticketsMovieCount: number }
+      >;
+    }
   >;
 };
 
@@ -35,27 +40,21 @@ const ticketsSlice = createSlice({
 
       state.ticketsByMovie[movieId][sessionTime].push(ticket);
 
-      state.movieStats[movieId] = {
+      state.movieStats[movieId] = state.movieStats[movieId] ?? { sessions: {} };
+
+      state.movieStats[movieId].sessions[sessionTime] = {
         ticketsMoviePrice: 0,
         ticketsMovieCount: 0,
       };
 
-      state.movieStats[movieId].ticketsMoviePrice = Object.values(
-        state.ticketsByMovie[movieId] ?? {},
-      ).reduce((acc, tickets) => {
-        return (
-          acc +
-          tickets.reduce((accTicket, current) => {
-            return (accTicket += current.price);
-          }, 0)
+      state.movieStats[movieId].sessions[sessionTime].ticketsMoviePrice =
+        state.ticketsByMovie[movieId][sessionTime].reduce(
+          (accTicket, current) => accTicket + current.price,
+          0,
         );
-      }, 0);
 
-      state.movieStats[movieId].ticketsMovieCount = Object.values(
-        state.ticketsByMovie[movieId] ?? {},
-      ).reduce((acc, tickets) => {
-        return (acc += tickets.length);
-      }, 0);
+      state.movieStats[movieId].sessions[sessionTime].ticketsMovieCount =
+        state.ticketsByMovie[movieId][sessionTime].length;
     },
 
     onDeleteTicket: (
@@ -74,22 +73,20 @@ const ticketsSlice = createSlice({
 
       state.ticketsByMovie[movieId][sessionTime].splice(ticketIndex, 1);
 
-      state.movieStats[movieId].ticketsMoviePrice = Object.values(
-        state.ticketsByMovie[movieId],
-      ).reduce((acc, tickets) => {
-        return (
-          acc +
-          tickets.reduce((accTicket, current) => {
-            return (accTicket += current.price);
-          }, 0)
-        );
-      }, 0);
+      state.movieStats[movieId].sessions[sessionTime].ticketsMoviePrice =
+        Object.values(state.ticketsByMovie[movieId]).reduce((acc, tickets) => {
+          return (
+            acc +
+            tickets.reduce((accTicket, current) => {
+              return (accTicket += current.price);
+            }, 0)
+          );
+        }, 0);
 
-      state.movieStats[movieId].ticketsMovieCount = Object.values(
-        state.ticketsByMovie[movieId],
-      ).reduce((acc, tickets) => {
-        return (acc += tickets.length);
-      }, 0);
+      state.movieStats[movieId].sessions[sessionTime].ticketsMovieCount =
+        Object.values(state.ticketsByMovie[movieId]).reduce((acc, tickets) => {
+          return (acc += tickets.length);
+        }, 0);
     },
   },
 });

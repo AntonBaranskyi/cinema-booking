@@ -1,23 +1,12 @@
 import { Box, Typography } from "@mui/material";
 
-import { useAppSelector } from "../../hooks/useAppSelector";
+import { useTicketsData } from "../../hooks/useTicketsData";
 import TicketCard from "../TicketCard";
 import styles from "./TicketsListWidget.module.scss";
 
 export const TicketsListWidget = () => {
-  const { ticketsByMovie, movieStats } = useAppSelector(
-    (state) => state.tickets,
-  );
-
-  const { currentMovieId, currentSession } = useAppSelector(
-    (state) => state.common,
-  );
-
-  const ticketsForCurrentMovie =
-    ticketsByMovie[currentMovieId]?.[currentSession] || [];
-
-  const totalTicketsPrice = movieStats[currentMovieId]?.ticketsMoviePrice || 0;
-  const totalTicketsCount = movieStats[currentMovieId]?.ticketsMovieCount || 0;
+  const { ticketsForCurrentMovie, totalTicketsCount, totalTicketsPrice } =
+    useTicketsData();
 
   return (
     <Box className={styles.TiketsWrapper}>

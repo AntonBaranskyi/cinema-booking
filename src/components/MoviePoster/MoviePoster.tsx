@@ -1,5 +1,4 @@
 import { Box } from "@mui/material";
-import React from "react";
 
 import poster from "../../assets/movie_poster.jpg";
 import styles from "./MoviePoster.module.scss";
