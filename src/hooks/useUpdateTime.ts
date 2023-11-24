@@ -22,7 +22,8 @@ export const useUpdateTime = () => {
 
   useEffect(() => {
     if (!timer) {
-      dispatch(onToggleWidget(false));
+      dispatch(onToggleWidget({ isOpen: false, movieId: "", session: "" }));
+
       dispatch(onToggleExpireModal(true));
     }
   }, [timer, dispatch]);
