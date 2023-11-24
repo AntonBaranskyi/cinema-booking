@@ -15,6 +15,27 @@
     },
     "info": {
       "no_movie": "Жодного фільму не знайдено"
+    },
+    "widget": {
+      "widget_header": {
+        "main_hall": "Основний зал",
+        "start": "Старт",
+        "location": "вулиця Гоголя 22, м. Полтава",
+        "timer": "Час на оплату"
+      },
+      "widget_main": {
+        "screen": "Екран",
+        "tickets_list": "Список квитків",
+        "total_tickets": "Загальна кількість квитків",
+        "total_amount": "Загальна сума",
+        "ticket_row": "Ряд",
+        "ticket_place": "Місце",
+        "ticket_price": "Грн"
+      },
+      "widget_footer": {
+        "back": "Go back",
+        "continue": "Continue"
+      }
     }
   }
 }

@@ -1,12 +1,16 @@
 import { AppBar, Box, Container, Toolbar, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import poster from "../../assets/movie_poster.jpg";
+import { translatePath } from "../../constants/i18nPath";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./WidgetHeader.module.scss";
 
 export const WidgetHeader = () => {
   const { timer, formatedTimer } = useUpdateTime();
+
+  const { t } = useTranslation();
 
   const { currentMovieId, currentSession } = useAppSelector(
     (state) => state.common,
@@ -26,17 +30,18 @@ export const WidgetHeader = () => {
             <Box>
               <Typography variant="h4">{currentMovie?.title_en}</Typography>
               <Typography paragraph>
-                {new Date().getDate()} листопада {currentSession} · Основний зал
-                · Старт
+                {new Date().getDate()} листопада {currentSession} ·{" "}
+                {t(`${translatePath.widget_header}.main_hall`)}·{" "}
+                {t(`${translatePath.widget_header}.start`)}
               </Typography>
               <Typography paragraph color="gray">
-                вулиця Гоголя 22, м. Полтава,
+                {t(`${translatePath.widget_header}.location`)}
               </Typography>
             </Box>
           </Box>
 
           <Typography variant="h6">
-            Час на оплату: {formatedTimer(timer)}
+            {t(`${translatePath.widget_header}.timer`)}: {formatedTimer(timer)}
           </Typography>
         </Toolbar>
       </Container>

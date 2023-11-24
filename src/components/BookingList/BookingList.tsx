@@ -1,6 +1,8 @@
 import { Box, Button, Grid, Tooltip, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 import { SEATS_DATA_REGULAR } from "../../constants/SeatsData";
+import { translatePath } from "../../constants/i18nPath";
 import { useTicketsData } from "../../hooks/useTicketsData";
 import styles from "./BookingList.module.scss";
 
@@ -8,11 +10,12 @@ export const BookingList = () => {
   const rows = new Set(SEATS_DATA_REGULAR.map((seat) => seat.row));
 
   const { handleChooseTicket, ticketsForCurrentMovie } = useTicketsData();
+  const { t } = useTranslation();
 
   return (
     <Box>
       <Typography variant="h1" textAlign="center" mb={5}>
-        ЕКРАН
+        {t(`${translatePath.widget_main}.screen`)}
       </Typography>
       {[...rows].map((row) => (
         <Grid
@@ -28,8 +31,10 @@ export const BookingList = () => {
                 className={styles.check}
                 title={
                   <Typography>
-                    {`Ряд: ${seat.row}, Місце: ${seat.seat}, Ціна: 
-                        ${seat.price}`}
+                    {t(`${translatePath.widget_main}.ticket_row`)} : {seat.row},
+                    {t(`${translatePath.widget_main}.ticket_place`)} :
+                    {seat.seat} {t(`${translatePath.widget_main}.ticket_price`)}
+                    :{seat.price}
                   </Typography>
                 }
               >

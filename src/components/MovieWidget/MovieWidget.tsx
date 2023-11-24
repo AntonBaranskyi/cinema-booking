@@ -1,4 +1,4 @@
-import { Box, Select, Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import React from "react";
 
 import { SESSIONS } from "../../constants/Sesions";
@@ -27,11 +27,14 @@ export const MovieWidget: React.FC<Props> = ({ currentMovie }) => {
   return (
     <Box className={styles.widgetWrapper}>
       <Box className={styles.widgetTop}>
-        <Typography>Timetable of sessions</Typography>
-        <Select fullWidth></Select>
+        <Typography variant="h5" textAlign="center">
+          Timetable of sessions
+        </Typography>
       </Box>
       <Box className={styles.widgetMain}>
-        <Typography>Your cinema</Typography>
+        <Typography variant="h5" textAlign="center" gutterBottom>
+          Your cinema
+        </Typography>
         <Box className={styles.widgetSessions}>
           {SESSIONS.map((hour) => (
             <Box
@@ -39,8 +42,10 @@ export const MovieWidget: React.FC<Props> = ({ currentMovie }) => {
               className={styles.widgetSessionsItem}
               onClick={() => handleHourClick(hour)}
             >
-              <Typography>{hour}</Typography>
-              <Typography className={styles.itemFormat}>3D</Typography>
+              <Typography variant="button">{hour}</Typography>
+              {currentMovie.format === "3D" && (
+                <Typography className={styles.itemFormat}>3D</Typography>
+              )}
             </Box>
           ))}
         </Box>

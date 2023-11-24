@@ -10,8 +10,8 @@
 
   .MuiGrid-item {
     display: flex;
-    justify-content: center; // Вирівнювання в центрі по горизонталі
-    align-items: center; // Вирівнювання в центрі по вертикалі
+    justify-content: center;
+    align-items: center;
 
     @include onPhone {
       margin: 0 auto;

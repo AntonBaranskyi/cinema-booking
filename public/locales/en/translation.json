@@ -15,6 +15,27 @@
     },
     "info": {
       "no_movie": "No movies found."
+    },
+    "widget": {
+      "widget_header": {
+        "main_hall": "Main hall",
+        "start": "Start",
+        "location": "22 Gogolya Street, Poltava",
+        "timer": "Payment time"
+      },
+      "widget_main": {
+        "screen": "Screen",
+        "tickets_list": "Tickets List",
+        "total_tickets": "Total Tickets",
+        "total_amount": "Total Amount",
+        "ticket_row": "Row",
+        "ticket_place": "Place",
+        "ticket_price": "Uah"
+      },
+      "widget_footer": {
+        "back": "Go back",
+        "continue": "Continue"
+      }
     }
   }
 }
