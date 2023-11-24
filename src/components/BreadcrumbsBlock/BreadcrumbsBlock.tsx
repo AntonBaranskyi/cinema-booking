@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useMoviePageData } from "../../hooks/useMoviePageData";
 import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
+import styles from "./Bredcrumbs.module.scss";
 
 export const BreadcrumbsBlock = () => {
   const navigate = useNavigate();
@@ -19,9 +20,9 @@ export const BreadcrumbsBlock = () => {
       <Breadcrumbs>
         <Link
           color="grey"
-          sx={{ cursor: "pointer" }}
           underline="hover"
           onClick={handleNavigate}
+          className={styles.BreadLink}
         >
           Our cinema
         </Link>

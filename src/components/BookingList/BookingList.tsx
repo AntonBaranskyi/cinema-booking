@@ -22,7 +22,7 @@ export const BookingList = () => {
           container
           spacing={1}
           key={`row-${row}`}
-          sx={{ justifyContent: "center", marginBottom: 1 }}
+          className={styles.WidgetPlaceContainer}
         >
           {SEATS_DATA_REGULAR.filter((seat) => seat.row === row).map((seat) => (
             <Grid item key={seat.id} spacing={1}>
