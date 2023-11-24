@@ -82,26 +82,37 @@ const ticketsSlice = createSlice({
     ) => {
       const { movieId, sessionTime, ticketId } = action.payload;
 
-      const ticketIndex = state.ticketsByMovie[movieId]?.[
-        sessionTime
-      ].findIndex((ticket) => ticket.id === ticketId);
+      if (
+        state.ticketsByMovie[movieId] &&
+        state.ticketsByMovie[movieId][sessionTime]
+      ) {
+        const ticketToRemove = state.ticketsByMovie[movieId][sessionTime].find(
+          (ticket) => ticket.id === ticketId,
+        );
 
-      state.ticketsByMovie[movieId][sessionTime].splice(ticketIndex, 1);
+        if (ticketToRemove) {
+          const prevTotalPrice =
+            state.movieStats[movieId]?.sessions?.[sessionTime]
+              ?.ticketsMoviePrice || 0;
+          const prevTotalCount =
+            state.movieStats[movieId]?.sessions?.[sessionTime]
+              ?.ticketsMovieCount || 0;
 
-      state.movieStats[movieId].sessions[sessionTime].ticketsMoviePrice =
-        Object.values(state.ticketsByMovie[movieId]).reduce((acc, tickets) => {
-          return (
-            acc +
-            tickets.reduce((accTicket, current) => {
-              return (accTicket += current.price);
-            }, 0)
-          );
-        }, 0);
+          state.ticketsByMovie[movieId][sessionTime] = state.ticketsByMovie[
+            movieId
+          ][sessionTime].filter((ticket) => ticket.id !== ticketId);
 
-      state.movieStats[movieId].sessions[sessionTime].ticketsMovieCount =
-        Object.values(state.ticketsByMovie[movieId]).reduce((acc, tickets) => {
-          return (acc += tickets.length);
-        }, 0);
+          state.movieStats[movieId].sessions[sessionTime].ticketsMoviePrice =
+            prevTotalPrice - ticketToRemove.price;
+          state.movieStats[movieId].sessions[sessionTime].ticketsMovieCount =
+            prevTotalCount - 1;
+
+          if (state.ticketsByMovie[movieId][sessionTime].length === 0) {
+            delete state.ticketsByMovie[movieId][sessionTime];
+            delete state.movieStats[movieId].sessions[sessionTime];
+          }
+        }
+      }
     },
   },
 });

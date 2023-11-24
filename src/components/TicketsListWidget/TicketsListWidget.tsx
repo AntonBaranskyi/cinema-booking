@@ -27,9 +27,11 @@ export const TicketsListWidget = () => {
         </Typography>
       </Box>
 
-      {ticketsForCurrentMovie.map((ticket) => (
-        <TicketCard ticket={ticket} key={ticket.id} />
-      ))}
+      <Box className={styles.TicketsBox}>
+        {ticketsForCurrentMovie.map((ticket) => (
+          <TicketCard ticket={ticket} key={ticket.id} />
+        ))}
+      </Box>
     </Box>
   );
 };
