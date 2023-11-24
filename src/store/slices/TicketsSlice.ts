@@ -1,29 +1,44 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { localStorageKeys } from "../../constants/LocalStorageKeys";
 import { ISeatData } from "../../types/seatsDataType";
 
+type Tickets = Record<string, Record<string, ISeatData[]>>;
+type MovieStats = Record<
+  string,
+  {
+    sessions: Record<
+      string,
+      { ticketsMoviePrice: number; ticketsMovieCount: number }
+    >;
+  }
+>;
+
 type State = {
-  ticketsByMovie: Record<string, Record<string, ISeatData[]>>;
-  movieStats: Record<
-    string,
-    {
-      sessions: Record<
-        string,
-        { ticketsMoviePrice: number; ticketsMovieCount: number }
-      >;
-    }
-  >;
+  ticketsByMovie: Tickets;
+  movieStats: MovieStats;
 };
 
+const storedTickets = localStorage.getItem(localStorageKeys.ticketsKey);
+const storedMovieStats = localStorage.getItem(localStorageKeys.movieStats);
+
 const initialState: State = {
-  ticketsByMovie: {},
-  movieStats: {},
+  ticketsByMovie: storedTickets ? JSON.parse(storedTickets) : ({} as Tickets),
+  movieStats: storedMovieStats
+    ? JSON.parse(storedMovieStats)
+    : ({} as MovieStats),
 };
 
 const ticketsSlice = createSlice({
   name: "tickets",
   initialState,
   reducers: {
+    onLoadTickets: (state, action: PayloadAction<Tickets>) => {
+      state.ticketsByMovie = action.payload;
+    },
+    onLoadMovieStats: (state, action: PayloadAction<MovieStats>) => {
+      state.movieStats = action.payload;
+    },
     onAddTicket: (
       state,
       action: PayloadAction<{
@@ -91,6 +106,7 @@ const ticketsSlice = createSlice({
   },
 });
 
-export const { onAddTicket, onDeleteTicket } = ticketsSlice.actions;
+export const { onAddTicket, onDeleteTicket, onLoadTickets, onLoadMovieStats } =
+  ticketsSlice.actions;
 
 export default ticketsSlice.reducer;

@@ -37,13 +37,17 @@ export const BookingList = () => {
                   onClick={() => handleChooseTicket(seat)}
                   size="large"
                   variant={
-                    ticketsForCurrentMovie.includes(seat)
+                    ticketsForCurrentMovie.some(
+                      (ticket) => ticket.id === seat.id,
+                    )
                       ? "contained"
                       : "outlined"
                   }
                   className={styles.WidgetPlace}
                   color={
-                    ticketsForCurrentMovie.includes(seat)
+                    ticketsForCurrentMovie.some(
+                      (ticket) => ticket.id === seat.id,
+                    )
                       ? "warning"
                       : "primary"
                   }

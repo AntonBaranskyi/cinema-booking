@@ -1,14 +1,16 @@
+import { useEffect } from "react";
+
+import { localStorageKeys } from "../constants/LocalStorageKeys";
 import { onToggleWidget } from "../store/slices/CommonSilce";
 import { onAddTicket, onDeleteTicket } from "../store/slices/TicketsSlice";
 import { ISeatData } from "../types/seatsDataType";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";
+import { useLocalStorage } from "./useLocalStorage";
 
 export const useTicketsData = () => {
   const dispatch = useAppDispatch();
-  const { currentMovieId, currentSession } = useAppSelector(
-    (state) => state.common,
-  );
+  const { currentMovieId, currentSession } = useLocalStorage();
 
   const { ticketsByMovie, movieStats } = useAppSelector(
     (state) => state.tickets,
@@ -25,7 +27,11 @@ export const useTicketsData = () => {
     0;
 
   const handleChooseTicket = (place: ISeatData) => {
-    if (ticketsForCurrentMovie?.includes(place)) {
+    const existingTicketIndex = ticketsForCurrentMovie.findIndex(
+      (ticket) => ticket.id === place.id,
+    );
+
+    if (existingTicketIndex !== -1) {
       dispatch(
         onDeleteTicket({
           movieId: currentMovieId,
@@ -57,6 +63,14 @@ export const useTicketsData = () => {
   const handleCloseTicketWidget = () => {
     dispatch(onToggleWidget({ isOpen: false, movieId: "", session: "" }));
   };
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKeys.currentSession, currentSession);
+  }, [currentSession]);
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKeys.currentMovie, currentMovieId);
+  }, [currentMovieId]);
 
   return {
     ticketsForCurrentMovie,
