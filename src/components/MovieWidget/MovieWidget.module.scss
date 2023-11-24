@@ -30,6 +30,10 @@
         margin: 0 0.2em 1em;
         cursor: pointer;
 
+        &:hover {
+          background-color: red;
+        }
+
         .itemFormat {
           font-size: 0.7em;
         }

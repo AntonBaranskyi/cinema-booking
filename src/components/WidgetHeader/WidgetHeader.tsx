@@ -4,11 +4,13 @@ import { useTranslation } from "react-i18next";
 import poster from "../../assets/movie_poster.jpg";
 import { translatePath } from "../../constants/i18nPath";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
 import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./WidgetHeader.module.scss";
 
 export const WidgetHeader = () => {
   const { timer, formatedTimer } = useUpdateTime();
+  const { langTitle } = useMovieInfoTranslations();
 
   const { t } = useTranslation();
 
@@ -28,7 +30,7 @@ export const WidgetHeader = () => {
           <Box className={styles.AppBarInfo}>
             <img src={poster} alt="poster" className={styles.BookingPoster} />
             <Box>
-              <Typography variant="h4">{currentMovie?.title_en}</Typography>
+              <Typography variant="h4">{currentMovie?.[langTitle]}</Typography>
               <Typography paragraph>
                 {new Date().getDate()} листопада {currentSession} ·{" "}
                 {t(`${translatePath.widget_header}.main_hall`)}·{" "}

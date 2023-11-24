@@ -33,8 +33,8 @@
         "ticket_price": "Грн"
       },
       "widget_footer": {
-        "back": "Go back",
-        "continue": "Continue"
+        "back": "Назад",
+        "continue": "Продовжити"
       }
     }
   }
