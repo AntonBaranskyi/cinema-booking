@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { onToggleExpireModal } from "../../store/slices/CommonSilce";
+import { onToggleExpireModal } from "../../store/slices/commonSilce";
 import styles from "./ExpireDialog.module.scss";
 
 export const ExpireDialog = () => {

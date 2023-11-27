@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { onFilterMovies } from "../store/slices/MoviesSlice";
+import { onFilterMovies } from "../store/slices/moviesSlice";
 import { TRANSLATE_ITEM } from "../types/TranslateItemsEnum";
 import { IMovie } from "../types/movie";
 import { filterMovies } from "../utils/filterFilms";

@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 
-import { localStorageKeys } from "../constants/LocalStorageKeys";
+import { localStorageKeys } from "../constants/localStorageKeys";
 import {
   onChangeCurrentMovie,
   onChangeCurrentSession,
-} from "../store/slices/CommonSilce";
-import { onLoadMovieStats, onLoadTickets } from "../store/slices/TicketsSlice";
+} from "../store/slices/commonSilce";
+import { onLoadMovieStats, onLoadTickets } from "../store/slices/ticketsSlice";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";
 

@@ -1,9 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 
-import { SESSIONS } from "../../constants/Sesions";
+import { SESSIONS } from "../../constants/sesions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { onToggleWidget } from "../../store/slices/CommonSilce";
+import { onToggleWidget } from "../../store/slices/commonSilce";
 import { IMovie } from "../../types/movie";
 import styles from "./MovieWidget.module.scss";
 

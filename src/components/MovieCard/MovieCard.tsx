@@ -3,10 +3,10 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import poster from "../../assets/movie_poster.jpg";
-import { SESSIONS } from "../../constants/Sesions";
+import { SESSIONS } from "../../constants/sesions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
-import { onToggleWidget } from "../../store/slices/CommonSilce";
+import { onToggleWidget } from "../../store/slices/commonSilce";
 import { IMovie } from "../../types/movie";
 import { prepareTitle } from "../../utils/normalizeTitle";
 import styles from "./MovieCard.module.scss";

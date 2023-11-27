@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { localStorageKeys } from "../../constants/LocalStorageKeys";
+import { localStorageKeys } from "../../constants/localStorageKeys";
 import { ISeatData } from "../../types/seatsDataType";
 
 type Tickets = Record<string, Record<string, ISeatData[]>>;

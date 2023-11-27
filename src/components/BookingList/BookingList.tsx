@@ -1,8 +1,8 @@
 import { Box, Button, Grid, Tooltip, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-import { SEATS_DATA_REGULAR } from "../../constants/SeatsData";
 import { translatePath } from "../../constants/i18nPath";
+import { SEATS_DATA_REGULAR } from "../../constants/seatsData";
 import { useTicketsData } from "../../hooks/useTicketsData";
 import styles from "./BookingList.module.scss";
 

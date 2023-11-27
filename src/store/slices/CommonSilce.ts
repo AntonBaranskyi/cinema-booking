@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
-import { localStorageKeys } from "../../constants/LocalStorageKeys";
+import { localStorageKeys } from "../../constants/localStorageKeys";
 import { Language } from "../../types/langType";
 
 const initialState = {

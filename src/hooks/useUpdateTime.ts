@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import {
   onToggleExpireModal,
   onToggleWidget,
-} from "../store/slices/CommonSilce";
+} from "../store/slices/commonSilce";
 import { useAppDispatch } from "./useAppDispatch";
 
 export const useUpdateTime = () => {

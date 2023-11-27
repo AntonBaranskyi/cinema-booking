@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
-import { localStorageKeys } from "../constants/LocalStorageKeys";
-import { onToggleWidget } from "../store/slices/CommonSilce";
-import { onAddTicket, onDeleteTicket } from "../store/slices/TicketsSlice";
+import { localStorageKeys } from "../constants/localStorageKeys";
+import { onToggleWidget } from "../store/slices/commonSilce";
+import { onAddTicket, onDeleteTicket } from "../store/slices/ticketsSlice";
 import { ISeatData } from "../types/seatsDataType";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";

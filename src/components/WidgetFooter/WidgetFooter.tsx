@@ -11,12 +11,7 @@ export const WidgetFooter = () => {
   const { t } = useTranslation();
 
   return (
-    <AppBar
-      position="static"
-      // sx={{ bottom: 0 }}
-      // sx={{ position: "fixed" }}
-      className={styles.Footer}
-    >
+    <AppBar position="static" className={styles.Footer}>
       <Container>
         <Box className={styles.FooterBtns}>
           <Button
