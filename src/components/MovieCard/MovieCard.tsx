@@ -1,12 +1,14 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import poster from "../../assets/movie_poster.jpg";
-import { SESSIONS } from "../../constants/Sesions";
-import { useAppSelector } from "../../hooks/useAppSelector";
+import { SESSIONS } from "../../constants/sesions";
+import { useAppDispatch } from "../../hooks/useAppDispatch";
+import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
+import { onToggleWidget } from "../../store/slices/commonSilce";
 import { IMovie } from "../../types/movie";
 import { prepareTitle } from "../../utils/normalizeTitle";
-import { getTitleLang } from "../../utils/prepareTitle";
 import styles from "./MovieCard.module.scss";
 
 type Props = {
@@ -14,11 +16,27 @@ type Props = {
 };
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
-  const { currentLanguage } = useAppSelector((state) => state.common);
-
-  const langTitle = getTitleLang(currentLanguage) as keyof IMovie;
+  const navigate = useNavigate();
+  const { langTitle } = useMovieInfoTranslations();
+  const dispatch = useAppDispatch();
 
   const normalizeTitle = prepareTitle(movie[langTitle] as string);
+
+  const handleNavigate = () => {
+    const normalizeEngTitle = movie.title_en.toLowerCase().replace(/ /g, "_");
+
+    navigate(`/film/${normalizeEngTitle}`);
+  };
+
+  const handleHourClick = (hour: string) => {
+    dispatch(
+      onToggleWidget({
+        isOpen: true,
+        movieId: movie.title_en,
+        session: hour,
+      }),
+    );
+  };
 
   return (
     <Card className={styles.card}>
@@ -31,13 +49,18 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
             component="h4"
             variant="h5"
             className={styles.cardTitle}
+            onClick={handleNavigate}
           >
             {`${movie.ageRestriction}+ ${normalizeTitle}`}
           </Typography>
 
           <Box className={styles.cardSessions}>
             {SESSIONS.map((hour) => (
-              <Box key={hour} className={styles.cardSessionsItem}>
+              <Box
+                key={hour}
+                className={styles.cardSessionsItem}
+                onClick={() => handleHourClick(hour)}
+              >
                 <Typography>{hour}</Typography>
 
                 {movie.format === "3D" && (

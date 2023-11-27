@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 
-import { onFilterMovies } from "../store/slices/MoviesSlice";
+import { onFilterMovies } from "../store/slices/moviesSlice";
+import { TRANSLATE_ITEM } from "../types/TranslateItemsEnum";
+import { IMovie } from "../types/movie";
 import { filterMovies } from "../utils/filterFilms";
+import { getItemLang } from "../utils/prepareDescr";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";
 import { useFilters } from "./useFilters";
@@ -16,8 +19,6 @@ export const usePrepareMovie = () => {
   const { filter, sort, debouncedValue, currentPage } = useFilters();
 
   useEffect(() => {
-    console.log("remount");
-
     const visibleMovies = filterMovies({
       movies: allMovies,
       filter,
@@ -36,5 +37,20 @@ export const usePrepareMovie = () => {
     indexOfLastMovie,
   );
 
-  return { currentMovies, noMoviesFound: currentMovies.length === 0 };
+  const langDescr = getItemLang(
+    TRANSLATE_ITEM.DESCR,
+    currentLanguage,
+  ) as keyof IMovie;
+
+  const genreDescr = getItemLang(
+    TRANSLATE_ITEM.GENRE,
+    currentLanguage,
+  ) as keyof IMovie;
+
+  return {
+    currentMovies,
+    noMoviesFound: currentMovies.length === 0,
+    langDescr,
+    genreDescr,
+  };
 };

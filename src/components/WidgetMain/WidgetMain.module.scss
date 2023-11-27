@@ -1,0 +1,13 @@
+@import "../../styles/mixins.scss";
+
+.WidgetMain {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  margin-bottom: 2rem;
+
+  @include onPhone {
+    gap: 2rem;
+  }
+}

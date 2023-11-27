@@ -1,6 +1,8 @@
 import { Box, Container } from "@mui/material";
 
+import BookingWidget from "../../components/BookingWidget";
 import DividerBlock from "../../components/DividerBlock";
+import ExpireDialog from "../../components/ExpireDialog";
 import Filters from "../../components/Filters";
 import Header from "../../components/Header";
 import MoviesList from "../../components/MoviesList";
@@ -20,5 +22,7 @@ export const HomePage = () => (
 
       <Pagination />
     </Container>
+    <BookingWidget />
+    <ExpireDialog />
   </>
 );

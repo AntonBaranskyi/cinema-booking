@@ -11,9 +11,9 @@ import {
 import cn from "classnames";
 import { useTranslation } from "react-i18next";
 
-import { FILTERS_OPTIONS } from "../../constants/FiltersOptions";
-import { SORT_OPTIONS } from "../../constants/SortOptions";
+import { FILTERS_OPTIONS } from "../../constants/filtersOptions";
 import { translatePath } from "../../constants/i18nPath";
+import { SORT_OPTIONS } from "../../constants/sortOptions";
 import { useFilters } from "../../hooks/useFilters";
 import { FILTERS } from "../../types/filterEnum";
 import { SORT } from "../../types/sortEnum";

@@ -11,8 +11,8 @@ import { Box, Container } from "@mui/system";
 import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.png";
-import { HEADER_LANG } from "../../constants/HeaderLanguage";
-import { FLAG_ICON_BASE_URL } from "../../constants/IconURl";
+import { HEADER_LANG } from "../../constants/headerLanguage";
+import { FLAG_ICON_BASE_URL } from "../../constants/iconURl";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./Header.module.scss";

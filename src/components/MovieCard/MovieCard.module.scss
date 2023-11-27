@@ -23,6 +23,12 @@
 
       .cardTitle {
         margin-bottom: 1em;
+        cursor: pointer;
+
+        &:hover {
+          color: gray;
+          transition: color 0.3s ease;
+        }
       }
 
       .cardSessions {
@@ -35,6 +41,11 @@
           text-align: center;
           margin: 0 0.2em 1em;
           cursor: pointer;
+
+          &:hover {
+            background-color: #cc0000;
+            border-radius: 0.2rem;
+          }
 
           .itemFormat {
             font-size: 0.7em;

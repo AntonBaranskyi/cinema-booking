@@ -1,12 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import common from "./slices/CommonSilce";
-import movies from "./slices/MoviesSlice";
+import common from "./slices/commonSilce";
+import movies from "./slices/moviesSlice";
+import tickets from "./slices/ticketsSlice";
 
 export const store = configureStore({
   reducer: {
     movies,
     common,
+    tickets,
   },
 });
 
