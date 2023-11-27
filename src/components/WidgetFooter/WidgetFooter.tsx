@@ -13,7 +13,8 @@ export const WidgetFooter = () => {
   return (
     <AppBar
       position="static"
-      sx={{ position: "fixed" }}
+      // sx={{ bottom: 0 }}
+      // sx={{ position: "fixed" }}
       className={styles.Footer}
     >
       <Container>

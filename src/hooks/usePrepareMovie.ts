@@ -19,8 +19,6 @@ export const usePrepareMovie = () => {
   const { filter, sort, debouncedValue, currentPage } = useFilters();
 
   useEffect(() => {
-    console.log("remount");
-
     const visibleMovies = filterMovies({
       movies: allMovies,
       filter,

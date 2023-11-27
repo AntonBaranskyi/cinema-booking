@@ -13,8 +13,6 @@
   background-color: none;
   height: 18.75rem;
 
-  cursor: pointer;
-
   .cardContent {
     display: flex;
     gap: 2em;
@@ -25,6 +23,12 @@
 
       .cardTitle {
         margin-bottom: 1em;
+        cursor: pointer;
+
+        &:hover {
+          color: gray;
+          transition: color 0.3s ease;
+        }
       }
 
       .cardSessions {

@@ -24,7 +24,6 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
 
   const handleNavigate = () => {
     const normalizeEngTitle = movie.title_en.toLowerCase().replace(/ /g, "_");
-    console.log(normalizeEngTitle);
 
     navigate(`/film/${normalizeEngTitle}`);
   };
