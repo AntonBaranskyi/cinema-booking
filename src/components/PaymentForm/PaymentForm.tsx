@@ -9,7 +9,7 @@ import React from "react";
 
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { onAddCard } from "../../store/slices/cardSlice";
+import { onAddCard, onSelectCard } from "../../store/slices/cardSlice";
 import { getInputProps } from "../../utils/stepsForm";
 import BankCardItem from "../BankCardItem";
 import styles from "./PaymentForm.module.scss";
@@ -47,6 +47,7 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
       form.setFieldError(name.cardNumber, "This card already existing");
     } else {
       dispatch(onAddCard(cardItem));
+      dispatch(onSelectCard(cardItem));
 
       form.resetForm();
     }

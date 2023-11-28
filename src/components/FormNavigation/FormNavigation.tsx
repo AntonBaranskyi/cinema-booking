@@ -24,12 +24,15 @@ export const FormNavigation: React.FC<Props> = ({
   const { isValid, validateForm, handleSubmit } = useFormikContext();
 
   useEffect(() => {
+    console.log("FormNavigation - useEffect", currentStep, selectedCard);
     validateForm();
-  }, [currentStep, validateForm]);
+  }, [currentStep, validateForm, selectedCard]);
 
   const handlePrev = () => {
     dispatch(onTogglePaymentModal(false));
   };
+
+  console.log("FormNavigation - Render", isValid, selectedCard);
 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -55,7 +58,7 @@ export const FormNavigation: React.FC<Props> = ({
 
           <Button
             variant="contained"
-            disabled={!isValid || !selectedCard}
+            disabled={!isValid && !selectedCard}
             onClick={() => handleSubmit()}
           >
             Buy
