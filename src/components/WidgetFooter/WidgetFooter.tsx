@@ -12,6 +12,10 @@ export const WidgetFooter = () => {
 
   const dispatch = useAppDispatch();
 
+  const notSellTickets = ticketsForCurrentMovie.filter(
+    (ticket) => !ticket.isSell,
+  );
+
   const handleContinue = () => {
     dispatch(onTogglePaymentModal(true));
   };
@@ -31,7 +35,7 @@ export const WidgetFooter = () => {
           </Button>
 
           <Button
-            disabled={ticketsForCurrentMovie.length === 0}
+            disabled={notSellTickets.length === 0}
             size="large"
             variant="contained"
             onClick={handleContinue}

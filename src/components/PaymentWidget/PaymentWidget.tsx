@@ -1,8 +1,16 @@
-import { Dialog, DialogContent, FormGroup } from "@mui/material";
+import { Box, Dialog, DialogContent, FormGroup } from "@mui/material";
 import { Formik, FormikProps, FormikValues } from "formik";
 import { useState } from "react";
 
+import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
+import { useTicketsData } from "../../hooks/useTicketsData";
+import {
+  onTogglePaymentModal,
+  onToggleThanksModal,
+  onToggleWidget,
+} from "../../store/slices/commonSilce";
+import { onPurchaseTickets } from "../../store/slices/ticketsSlice";
 import {
   generateInitialValues,
   generateSteps,
@@ -12,7 +20,11 @@ import FormNavigation from "../FormNavigation";
 import styles from "./PaymentWidget.module.scss";
 
 export const PaymentWidget = () => {
-  const { isOpenPayment } = useAppSelector((state) => state.common);
+  const { isOpenPayment, currentMovieId, currentSession } = useAppSelector(
+    (state) => state.common,
+  );
+  const dispatch = useAppDispatch();
+  const { ticketsForCurrentMovie } = useTicketsData();
   const [steps] = useState(generateSteps());
 
   const [initialValues] = useState(generateInitialValues(steps));
@@ -39,6 +51,24 @@ export const PaymentWidget = () => {
     return <StepComponent {...commonProps} />;
   };
 
+  const onHandleSubmit = () => {
+    console.log("send");
+
+    const currentIds = ticketsForCurrentMovie.map((ticket) => ticket.id);
+
+    dispatch(
+      onPurchaseTickets({
+        movieId: currentMovieId,
+        sessionTime: currentSession,
+        ticketsIds: currentIds,
+      }),
+    );
+
+    dispatch(onToggleThanksModal(true));
+    dispatch(onToggleWidget({ isOpen: false, movieId: "", session: "" }));
+    dispatch(onTogglePaymentModal(false));
+  };
+
   return (
     <Dialog fullScreen open={isOpenPayment}>
       <DialogContent>
@@ -46,23 +76,27 @@ export const PaymentWidget = () => {
           <Formik
             initialValues={initialValues}
             validationSchema={getStepChema(currentIndex, steps)}
-            onSubmit={(values) => {
-              console.log(values);
-            }}
+            onSubmit={onHandleSubmit}
+            validateOnMount
           >
             {(formikProps: FormikProps<FormikValues>) => (
-              <form
-                onSubmit={formikProps.handleSubmit}
-                className={styles.PaymentForm}
-              >
-                {renderCurrentStep(formikProps)}
-                <FormNavigation
-                  currentStep={currentIndex}
-                  handleContinue={handleContinue}
-                  handleBack={handleBack}
-                  maxSteps={steps.length}
-                />
-              </form>
+              <>
+                {/* {console.log(formikProps.handleSubmit)} */}
+
+                <Box
+                  // onSubmit={formikProps.handleSubmit}
+                  className={styles.PaymentForm}
+                >
+                  {renderCurrentStep(formikProps)}
+                  <FormNavigation
+                    currentStep={currentIndex}
+                    handleContinue={handleContinue}
+                    handleBack={handleBack}
+                    maxSteps={steps.length}
+                    onSubmit={onHandleSubmit}
+                  />
+                </Box>
+              </>
             )}
           </Formik>
         </FormGroup>

@@ -3,4 +3,6 @@ export interface ISeatData {
   row: number;
   seat: number;
   price: number;
+
+  isSell: boolean;
 }

@@ -25,11 +25,11 @@ type Props = {
 };
 
 export const PaymentForm: React.FC<Props> = ({ form, name }) => {
-  const { isValid, errors, values } = useFormikContext();
+  const { isValid, values } = useFormikContext();
   const dispatch = useAppDispatch();
   const { cards } = useAppSelector((state) => state.cards);
 
-  console.log(errors);
+  // console.log(errors);
 
   const onHandleAddCard = () => {
     const { cardNumber, expiryDate } = values;

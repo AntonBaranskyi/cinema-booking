@@ -11,20 +11,22 @@ type Props = {
   handleContinue: () => void;
   handleBack: () => void;
   maxSteps: number;
+  onSubmit: () => void;
 };
 
 export const FormNavigation: React.FC<Props> = ({
   currentStep,
   handleBack,
   handleContinue,
+  onSubmit,
 }) => {
   const { selectedCard } = useAppSelector((state) => state.cards);
   const dispatch = useAppDispatch();
 
-  const { isValid, validateForm, handleSubmit } = useFormikContext();
+  const { isValid, validateForm } = useFormikContext();
 
   useEffect(() => {
-    console.log("FormNavigation - useEffect", currentStep, selectedCard);
+    // console.log("FormNavigation - useEffect", currentStep, selectedCard);
     validateForm();
   }, [currentStep, validateForm, selectedCard]);
 
@@ -32,7 +34,13 @@ export const FormNavigation: React.FC<Props> = ({
     dispatch(onTogglePaymentModal(false));
   };
 
-  console.log("FormNavigation - Render", isValid, selectedCard);
+  // console.log("FormNavigation - Render", isValid, selectedCard);
+
+  const handleFormSubmit = () => {
+    console.log("submitting");
+
+    onSubmit();
+  };
 
   return (
     <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -59,7 +67,8 @@ export const FormNavigation: React.FC<Props> = ({
           <Button
             variant="contained"
             disabled={!isValid && !selectedCard}
-            onClick={() => handleSubmit()}
+            onClick={handleFormSubmit}
+            type="submit"
           >
             Buy
           </Button>

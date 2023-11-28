@@ -53,23 +53,30 @@ const ticketsSlice = createSlice({
       state.ticketsByMovie[movieId][sessionTime] =
         state.ticketsByMovie[movieId][sessionTime] ?? [];
 
-      state.ticketsByMovie[movieId][sessionTime].push(ticket);
+      const existingTicket = state.ticketsByMovie[movieId][sessionTime].find(
+        (existingTicket) => existingTicket.id === ticket.id,
+      );
 
-      state.movieStats[movieId] = state.movieStats[movieId] ?? { sessions: {} };
+      if (!existingTicket) {
+        state.ticketsByMovie[movieId][sessionTime].push(ticket);
 
-      state.movieStats[movieId].sessions[sessionTime] = {
-        ticketsMoviePrice: 0,
-        ticketsMovieCount: 0,
-      };
+        state.movieStats[movieId] = state.movieStats[movieId] ?? {
+          sessions: {},
+        };
 
-      state.movieStats[movieId].sessions[sessionTime].ticketsMoviePrice =
-        state.ticketsByMovie[movieId][sessionTime].reduce(
-          (accTicket, current) => accTicket + current.price,
-          0,
-        );
-
-      state.movieStats[movieId].sessions[sessionTime].ticketsMovieCount =
-        state.ticketsByMovie[movieId][sessionTime].length;
+        state.movieStats[movieId].sessions[sessionTime] = {
+          ticketsMoviePrice: state.ticketsByMovie[movieId][sessionTime].reduce(
+            (accTicket, current) =>
+              current.isSell ? accTicket : accTicket + current.price,
+            0,
+          ),
+          ticketsMovieCount: state.ticketsByMovie[movieId][sessionTime].reduce(
+            (accTicket, current) =>
+              current.isSell ? accTicket : accTicket + 1,
+            0,
+          ),
+        };
+      }
     },
 
     onDeleteTicket: (
@@ -114,10 +121,59 @@ const ticketsSlice = createSlice({
         }
       }
     },
+
+    onPurchaseTickets: (
+      state,
+      action: PayloadAction<{
+        movieId: string;
+        sessionTime: string;
+        ticketsIds: number[];
+      }>,
+    ) => {
+      const { movieId, sessionTime, ticketsIds } = action.payload;
+
+      if (
+        state.ticketsByMovie[movieId] &&
+        state.ticketsByMovie[movieId][sessionTime]
+      ) {
+        // Mark the tickets to be purchased as isSell = true
+        ticketsIds.forEach((ticketId) => {
+          const ticketToBuy = state.ticketsByMovie[movieId][sessionTime].find(
+            (ticket) => ticket.id === ticketId,
+          );
+
+          if (ticketToBuy) {
+            ticketToBuy.isSell = true;
+          }
+        });
+
+        // Recalculate ticketsMoviePrice and ticketsMovieCount for all tickets
+        state.movieStats[movieId] = state.movieStats[movieId] ?? {
+          sessions: {},
+        };
+        state.movieStats[movieId].sessions[sessionTime] = {
+          ticketsMoviePrice: state.ticketsByMovie[movieId][sessionTime].reduce(
+            (accTicket, current) =>
+              current.isSell ? accTicket : accTicket + current.price,
+            0,
+          ),
+          ticketsMovieCount: state.ticketsByMovie[movieId][sessionTime].reduce(
+            (accTicket, current) =>
+              current.isSell ? accTicket : accTicket + 1,
+            0,
+          ),
+        };
+      }
+    },
   },
 });
 
-export const { onAddTicket, onDeleteTicket, onLoadTickets, onLoadMovieStats } =
-  ticketsSlice.actions;
+export const {
+  onAddTicket,
+  onDeleteTicket,
+  onLoadTickets,
+  onLoadMovieStats,
+  onPurchaseTickets,
+} = ticketsSlice.actions;
 
 export default ticketsSlice.reducer;

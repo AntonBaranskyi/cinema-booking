@@ -10,6 +10,10 @@ export const TicketsListWidget = () => {
   const { ticketsForCurrentMovie, totalTicketsCount, totalTicketsPrice } =
     useTicketsData();
 
+  const notSellTickets = ticketsForCurrentMovie.filter(
+    (ticket) => !ticket.isSell,
+  );
+
   const { t } = useTranslation();
 
   return (
@@ -28,7 +32,7 @@ export const TicketsListWidget = () => {
       </Box>
 
       <Box className={styles.TicketsBox}>
-        {ticketsForCurrentMovie.map((ticket) => (
+        {notSellTickets.map((ticket) => (
           <TicketCard ticket={ticket} key={ticket.id} />
         ))}
       </Box>
