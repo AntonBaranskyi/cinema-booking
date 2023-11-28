@@ -1,0 +1,21 @@
+@import "../../styles/mixins.scss";
+
+.FormContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  margin-bottom: 2rem;
+
+  min-width: 500px;
+
+  @include onPhone {
+    min-width: 300px;
+  }
+
+  .FormBoxItem {
+    .FormInputItem {
+      width: 100%;
+    }
+  }
+}
