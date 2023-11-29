@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { translatePath } from "../../constants/i18nPath";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useTicketsData } from "../../hooks/useTicketsData";
-import { onTogglePaymentModal } from "../../store/slices/commonSilce";
+import { onTogglePaymentModal } from "../../store/slices/commonSlice";
 import styles from "./WidgetFooter.module.scss";
 
 export const WidgetFooter = () => {

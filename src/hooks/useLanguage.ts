@@ -2,7 +2,7 @@ import { SelectChangeEvent } from "@mui/material";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 
-import { onChangeLanguage } from "../store/slices/commonSilce";
+import { onChangeLanguage } from "../store/slices/commonSlice";
 import { Language } from "../types/langType";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";

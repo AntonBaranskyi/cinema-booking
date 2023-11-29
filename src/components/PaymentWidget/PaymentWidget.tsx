@@ -9,7 +9,7 @@ import {
   onTogglePaymentModal,
   onToggleThanksModal,
   onToggleWidget,
-} from "../../store/slices/commonSilce";
+} from "../../store/slices/commonSlice";
 import { onPurchaseTickets } from "../../store/slices/ticketsSlice";
 import {
   generateInitialValues,

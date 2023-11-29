@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 import { translatePath } from "../../constants/i18nPath";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
-import { onTogglePaymentModal } from "../../store/slices/commonSilce";
+import { onTogglePaymentModal } from "../../store/slices/commonSlice";
 import styles from "./FormNavigation.module.scss";
 
 type Props = {
