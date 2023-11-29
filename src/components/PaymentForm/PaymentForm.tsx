@@ -1,12 +1,12 @@
-import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
-import { ErrorMessage, FormikProps, FormikValues } from "formik";
+import { Box, Button, Typography } from "@mui/material";
+import { FormikProps, FormikValues } from "formik";
 import React from "react";
 import { useTranslation } from "react-i18next";
 
 import { translatePath } from "../../constants/i18nPath";
 import { useBankCard } from "../../hooks/useBankCard";
-import { getInputProps } from "../../utils/stepsForm";
 import BankCardItem from "../BankCardItem";
+import PaymentFormField from "../PaymentFormField";
 import styles from "./PaymentForm.module.scss";
 
 type Props = {
@@ -50,51 +50,40 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
       <Typography variant="h6" mb={1}>
         {t(`${translatePath.widget_card}.add_new`)}
       </Typography>
-      <Box mb={3}>
-        <InputLabel>{t(`${translatePath.widget_card}.holder`)}</InputLabel>
-        <TextField
-          type="text"
-          placeholder={t(`${translatePath.widget_card}.holder_placeholder`)}
-          className={styles.InputName}
-          {...getInputProps(name.fullName, form)}
-        />
-      </Box>
+
+      <PaymentFormField
+        size="large"
+        name={name.fullName}
+        form={form}
+        label={t(`${translatePath.widget_card}.holder`)}
+        type="text"
+        placeholder={t(`${translatePath.widget_card}.holder_placeholder`)}
+      />
 
       <Box className={styles.extraCardData} mb={4}>
-        <Box className={styles.InputsWrapperBig}>
-          <InputLabel>{t(`${translatePath.widget_card}.number`)}</InputLabel>
-          <TextField
-            type="number"
-            placeholder={t(`${translatePath.widget_card}.number_placeholder`)}
-            className={styles.InputItem}
-            {...getInputProps(name.cardNumber, form)}
-          />
+        <PaymentFormField
+          size="large"
+          name={name.cardNumber}
+          form={form}
+          label={t(`${translatePath.widget_card}.number`)}
+          type="number"
+          placeholder={t(`${translatePath.widget_card}.number_placeholder`)}
+        />
 
-          <ErrorMessage name={name.cardNumber} />
-        </Box>
+        <PaymentFormField
+          name={name.expiryDate}
+          form={form}
+          label={t(`${translatePath.widget_card}.expire`)}
+          placeholder={t(`${translatePath.widget_card}.expire_placeholder`)}
+        />
 
-        <Box className={styles.InputWrapperSm}>
-          <InputLabel>{t(`${translatePath.widget_card}.expire`)}</InputLabel>
-
-          <TextField
-            placeholder={t(`${translatePath.widget_card}.expire_placeholder`)}
-            className={styles.InputItem}
-            {...getInputProps(name.expiryDate, form)}
-          />
-
-          <ErrorMessage name={name.expiryDate} />
-        </Box>
-        <Box className={styles.InputWrapperSm}>
-          <InputLabel>CVV</InputLabel>
-          <TextField
-            type="password"
-            placeholder="CVV"
-            className={styles.InputItem}
-            {...getInputProps(name.cvv, form)}
-          />
-
-          <ErrorMessage name={name.cvv} />
-        </Box>
+        <PaymentFormField
+          name={name.cvv}
+          form={form}
+          label="CVV"
+          placeholder="CVV"
+          type="password"
+        />
       </Box>
       <Button
         disabled={!isValid || isEmpty}

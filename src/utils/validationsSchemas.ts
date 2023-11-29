@@ -20,6 +20,10 @@ export const validationSignUpSchema = yup.object({
 });
 
 export const paymentSchema = yup.object({
+  fullName: yup
+    .string()
+    .min(3, "Fullname should be of minimum 3 characters")
+    .required("Fullname is required"),
   cardNumber: yup
     .string()
     .matches(
