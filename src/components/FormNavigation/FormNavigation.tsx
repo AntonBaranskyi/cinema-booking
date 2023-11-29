@@ -5,12 +5,12 @@ import React, { useEffect } from "react";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { onTogglePaymentModal } from "../../store/slices/commonSilce";
+import styles from "./FormNavigation.module.scss";
 
 type Props = {
   currentStep: number;
   handleContinue: () => void;
   handleBack: () => void;
-  maxSteps: number;
   onSubmit: () => void;
 };
 
@@ -26,7 +26,6 @@ export const FormNavigation: React.FC<Props> = ({
   const { isValid, validateForm } = useFormikContext();
 
   useEffect(() => {
-    // console.log("FormNavigation - useEffect", currentStep, selectedCard);
     validateForm();
   }, [currentStep, validateForm, selectedCard]);
 
@@ -34,16 +33,8 @@ export const FormNavigation: React.FC<Props> = ({
     dispatch(onTogglePaymentModal(false));
   };
 
-  // console.log("FormNavigation - Render", isValid, selectedCard);
-
-  const handleFormSubmit = () => {
-    console.log("submitting");
-
-    onSubmit();
-  };
-
   return (
-    <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+    <Box className={styles.NavigationWrapper}>
       {currentStep === 0 ? (
         <>
           <Button variant="text" onClick={handlePrev}>
@@ -67,7 +58,7 @@ export const FormNavigation: React.FC<Props> = ({
           <Button
             variant="contained"
             disabled={!isValid && !selectedCard}
-            onClick={handleFormSubmit}
+            onClick={onSubmit}
             type="submit"
           >
             Buy

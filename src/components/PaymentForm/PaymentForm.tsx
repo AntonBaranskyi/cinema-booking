@@ -1,15 +1,8 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
-import {
-  ErrorMessage,
-  FormikProps,
-  FormikValues,
-  useFormikContext,
-} from "formik";
+import { ErrorMessage, FormikProps, FormikValues } from "formik";
 import React from "react";
 
-import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { useAppSelector } from "../../hooks/useAppSelector";
-import { onAddCard, onSelectCard } from "../../store/slices/cardSlice";
+import { useBankCard } from "../../hooks/useBankCard";
 import { getInputProps } from "../../utils/stepsForm";
 import BankCardItem from "../BankCardItem";
 import styles from "./PaymentForm.module.scss";
@@ -25,35 +18,14 @@ type Props = {
 };
 
 export const PaymentForm: React.FC<Props> = ({ form, name }) => {
-  const { isValid, values } = useFormikContext();
-  const dispatch = useAppDispatch();
-  const { cards } = useAppSelector((state) => state.cards);
+  const { cards, onHandleAddCard, isEmpty, isValid } = useBankCard();
 
-  // console.log(errors);
+  console.log(cards);
 
-  const onHandleAddCard = () => {
-    const { cardNumber, expiryDate } = values;
-
-    const cardItem = {
-      cardNumber,
-      expiryDate,
-    };
-
-    const isCardAlreadyExist = cards.some(
-      (card) => card.cardNumber === cardNumber,
-    );
-
-    if (isCardAlreadyExist) {
-      form.setFieldError(name.cardNumber, "This card already existing");
-    } else {
-      dispatch(onAddCard(cardItem));
-      dispatch(onSelectCard(cardItem));
-
-      form.resetForm();
-    }
+  const handleAddingCard = () => {
+    onHandleAddCard(name);
   };
 
-  const isEmpty = !values.cardNumber || !values.expiryDate;
   return (
     <>
       <Typography variant="h3" textAlign="center" mb={2}>
@@ -85,35 +57,35 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
       </Box>
 
       <Box className={styles.extraCardData} mb={4}>
-        <Box sx={{ width: "50%" }}>
+        <Box className={styles.InputsWrapperBig}>
           <InputLabel>Card number</InputLabel>
           <TextField
             type="number"
             placeholder="Please,write your card number"
-            sx={{ width: "100%" }}
+            className={styles.InputItem}
             {...getInputProps(name.cardNumber, form)}
           />
 
           <ErrorMessage name={name.cardNumber} />
         </Box>
 
-        <Box sx={{ width: "25%" }}>
+        <Box className={styles.InputWrapperSm}>
           <InputLabel>Expire date</InputLabel>
 
           <TextField
             placeholder="MM/YY"
-            sx={{ width: "100%" }}
+            className={styles.InputItem}
             {...getInputProps(name.expiryDate, form)}
           />
 
           <ErrorMessage name={name.expiryDate} />
         </Box>
-        <Box sx={{ width: "25%" }}>
+        <Box className={styles.InputWrapperSm}>
           <InputLabel>CVV</InputLabel>
           <TextField
             type="password"
             placeholder="CVV"
-            sx={{ width: "100%" }}
+            className={styles.InputItem}
             {...getInputProps(name.cvv, form)}
           />
 
@@ -125,7 +97,7 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
         variant="contained"
         color="warning"
         sx={{ marginBottom: 4 }}
-        onClick={onHandleAddCard}
+        onClick={handleAddingCard}
       >
         Add card
       </Button>

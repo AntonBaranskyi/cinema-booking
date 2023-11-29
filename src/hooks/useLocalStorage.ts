@@ -19,6 +19,8 @@ export const useLocalStorage = () => {
     (state) => state.tickets,
   );
 
+  const { cards, selectedCard } = useAppSelector((state) => state.cards);
+
   useEffect(() => {
     const storedMovieStats = localStorage.getItem(localStorageKeys.movieStats);
 
@@ -67,5 +69,16 @@ export const useLocalStorage = () => {
     );
   }, [movieStats]);
 
-  return { currentSession, currentMovieId };
+  useEffect(() => {
+    localStorage.setItem(localStorageKeys.cards, JSON.stringify(cards));
+  }, [cards]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      localStorageKeys.selectedCard,
+      JSON.stringify(selectedCard),
+    );
+  }, [selectedCard]);
+
+  return { currentSession, currentMovieId, cards, selectedCard };
 };

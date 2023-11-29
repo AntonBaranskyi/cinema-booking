@@ -136,7 +136,6 @@ const ticketsSlice = createSlice({
         state.ticketsByMovie[movieId] &&
         state.ticketsByMovie[movieId][sessionTime]
       ) {
-        // Mark the tickets to be purchased as isSell = true
         ticketsIds.forEach((ticketId) => {
           const ticketToBuy = state.ticketsByMovie[movieId][sessionTime].find(
             (ticket) => ticket.id === ticketId,
@@ -147,7 +146,6 @@ const ticketsSlice = createSlice({
           }
         });
 
-        // Recalculate ticketsMoviePrice and ticketsMovieCount for all tickets
         state.movieStats[movieId] = state.movieStats[movieId] ?? {
           sessions: {},
         };

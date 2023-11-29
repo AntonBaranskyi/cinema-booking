@@ -7,12 +7,8 @@ import TicketCard from "../TicketCard";
 import styles from "./TicketsListWidget.module.scss";
 
 export const TicketsListWidget = () => {
-  const { ticketsForCurrentMovie, totalTicketsCount, totalTicketsPrice } =
+  const { notSellTickets, totalTicketsCount, totalTicketsPrice } =
     useTicketsData();
-
-  const notSellTickets = ticketsForCurrentMovie.filter(
-    (ticket) => !ticket.isSell,
-  );
 
   const { t } = useTranslation();
 

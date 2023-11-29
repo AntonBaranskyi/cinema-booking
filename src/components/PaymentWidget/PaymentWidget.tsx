@@ -20,10 +20,11 @@ import FormNavigation from "../FormNavigation";
 import styles from "./PaymentWidget.module.scss";
 
 export const PaymentWidget = () => {
-  const { isOpenPayment, currentMovieId, currentSession } = useAppSelector(
+  const dispatch = useAppDispatch();
+  const { currentMovieId, currentSession, isOpenPayment } = useAppSelector(
     (state) => state.common,
   );
-  const dispatch = useAppDispatch();
+
   const { ticketsForCurrentMovie } = useTicketsData();
   const [steps] = useState(generateSteps());
 
@@ -81,18 +82,12 @@ export const PaymentWidget = () => {
           >
             {(formikProps: FormikProps<FormikValues>) => (
               <>
-                {/* {console.log(formikProps.handleSubmit)} */}
-
-                <Box
-                  // onSubmit={formikProps.handleSubmit}
-                  className={styles.PaymentForm}
-                >
+                <Box className={styles.PaymentForm}>
                   {renderCurrentStep(formikProps)}
                   <FormNavigation
                     currentStep={currentIndex}
                     handleContinue={handleContinue}
                     handleBack={handleBack}
-                    maxSteps={steps.length}
                     onSubmit={onHandleSubmit}
                   />
                 </Box>

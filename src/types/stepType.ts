@@ -17,6 +17,6 @@ type CardDataNameTypes = {
 
 export type Step = {
   name: SignUpNamesType | CardDataNameTypes;
-  component: React.ElementType;
+  component: React.ComponentType<any>;
   validationSchema: Yup.Schema<any>;
 };

@@ -26,6 +26,10 @@ export const useTicketsData = () => {
     movieStats[currentMovieId]?.sessions?.[currentSession]?.ticketsMovieCount ||
     0;
 
+  const notSellTickets = ticketsForCurrentMovie.filter(
+    (ticket) => !ticket.isSell,
+  );
+
   const handleChooseTicket = (place: ISeatData) => {
     const existingTicketIndex = ticketsForCurrentMovie.findIndex(
       (ticket) => ticket.id === place.id,
@@ -79,5 +83,6 @@ export const useTicketsData = () => {
     handleCloseTicketWidget,
     handleChooseTicket,
     handleDeleteTicket,
+    notSellTickets,
   };
 };

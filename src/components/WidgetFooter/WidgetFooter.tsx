@@ -8,13 +8,9 @@ import { onTogglePaymentModal } from "../../store/slices/commonSilce";
 import styles from "./WidgetFooter.module.scss";
 
 export const WidgetFooter = () => {
-  const { handleCloseTicketWidget, ticketsForCurrentMovie } = useTicketsData();
+  const { handleCloseTicketWidget, notSellTickets } = useTicketsData();
 
   const dispatch = useAppDispatch();
-
-  const notSellTickets = ticketsForCurrentMovie.filter(
-    (ticket) => !ticket.isSell,
-  );
 
   const handleContinue = () => {
     dispatch(onTogglePaymentModal(true));

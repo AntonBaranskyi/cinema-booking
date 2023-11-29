@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
+import { localStorageKeys } from "../../constants/localStorageKeys";
 import { ICard } from "../../types/card";
 
 type IState = {
@@ -7,8 +8,10 @@ type IState = {
   selectedCard: ICard | null;
 };
 
+const storedCards = localStorage.getItem(localStorageKeys.cards);
+
 const initialState: IState = {
-  cards: [],
+  cards: storedCards ? JSON.parse(storedCards) : [],
   selectedCard: null,
 };
 
@@ -33,10 +36,24 @@ const cardSlice = createSlice({
     onDeleteSelectedCard: (state) => {
       state.selectedCard = null;
     },
+
+    onLoadCards: (state, action: PayloadAction<ICard[]>) => {
+      state.cards = action.payload;
+    },
+
+    onLoadCurrentCard: (state, action: PayloadAction<ICard>) => {
+      state.selectedCard = action.payload;
+    },
   },
 });
 
-export const { onAddCard, onDeleteCard, onSelectCard, onDeleteSelectedCard } =
-  cardSlice.actions;
+export const {
+  onAddCard,
+  onDeleteCard,
+  onSelectCard,
+  onLoadCards,
+  onDeleteSelectedCard,
+  onLoadCurrentCard,
+} = cardSlice.actions;
 
 export default cardSlice.reducer;

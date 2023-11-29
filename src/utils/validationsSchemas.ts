@@ -12,7 +12,10 @@ export const validationSignUpSchema = yup.object({
     .required("Email is required"),
   phone: yup
     .string()
-    .matches(/^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/)
+    .matches(
+      /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/,
+      "Invalid phone number",
+    )
     .optional(),
 });
 
