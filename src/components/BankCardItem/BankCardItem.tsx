@@ -1,9 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import cn from "classnames";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 import masterCard from "../../assets/icons/master_card.png";
 import visa from "../../assets/icons/visa.png";
+import { translatePath } from "../../constants/i18nPath";
 import { useBankCard } from "../../hooks/useBankCard";
 import { ICard } from "../../types/card";
 import styles from "./BankCardItem.module.scss";
@@ -14,6 +16,7 @@ type Props = {
 
 export const BankCardItem: React.FC<Props> = ({ card }) => {
   const { handleSelectCard, handleRemoveCard, selectedCard } = useBankCard();
+  const { t } = useTranslation();
 
   const onHandleSelectCard = () => {
     handleSelectCard(card);
@@ -42,7 +45,7 @@ export const BankCardItem: React.FC<Props> = ({ card }) => {
         className={styles.CardDelete}
         onClick={onHandleRemoveCard}
       >
-        Remove card
+        {t(`${translatePath.widget_card}.delete`)}
       </Typography>
     </Box>
   );

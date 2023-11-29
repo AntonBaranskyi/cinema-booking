@@ -53,8 +53,6 @@ export const PaymentWidget = () => {
   };
 
   const onHandleSubmit = () => {
-    console.log("send");
-
     const currentIds = ticketsForCurrentMovie.map((ticket) => ticket.id);
 
     dispatch(

@@ -1,7 +1,9 @@
 import { Box, InputLabel, TextField, Typography } from "@mui/material";
 import { ErrorMessage, FormikProps, FormikValues } from "formik";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
+import { translatePath } from "../../constants/i18nPath";
 import { getInputProps } from "../../utils/stepsForm";
 import styles from "./SignUpForm.module.scss";
 
@@ -15,17 +17,23 @@ type Props = {
 };
 
 export const SignUpForm: React.FC<Props> = ({ form, name }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Typography variant="h3" textAlign="center" mb={2}>
-        Sign up user
+        {t(`${translatePath.widget_signUp}.title`)}
       </Typography>
 
       <Box className={styles.FormContainer}>
         <Box className={styles.FormBoxItem}>
-          <InputLabel>Full name *</InputLabel>
+          <InputLabel>
+            {t(`${translatePath.widget_signUp}.fullName`)} *
+          </InputLabel>
           <TextField
-            placeholder="Write your name"
+            placeholder={t(
+              `${translatePath.widget_signUp}.fullName_placeholder`,
+            )}
             type="text"
             className={styles.FormInputItem}
             {...getInputProps(name.fullName, form)}
@@ -34,10 +42,10 @@ export const SignUpForm: React.FC<Props> = ({ form, name }) => {
         </Box>
 
         <Box className={styles.FormBoxItem}>
-          <InputLabel>Email *</InputLabel>
+          <InputLabel>{t(`${translatePath.widget_signUp}.email`)} *</InputLabel>
           <TextField
             type="email"
-            placeholder="Write your email"
+            placeholder={t(`${translatePath.widget_signUp}.email_placeholder`)}
             className={styles.FormInputItem}
             {...getInputProps(name.email, form)}
           />
@@ -45,10 +53,10 @@ export const SignUpForm: React.FC<Props> = ({ form, name }) => {
         </Box>
 
         <Box className={styles.FormBoxItem}>
-          <InputLabel>Phone number</InputLabel>
+          <InputLabel>{t(`${translatePath.widget_signUp}.phone`)}</InputLabel>
           <TextField
             type="tel"
-            placeholder="Write your phone number"
+            placeholder={t(`${translatePath.widget_signUp}.phone_placeholder`)}
             className={styles.FormInputItem}
             {...getInputProps(name.phone, form)}
           />

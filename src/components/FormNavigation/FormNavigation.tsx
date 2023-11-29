@@ -1,7 +1,9 @@
 import { Box, Button } from "@mui/material";
 import { useFormikContext } from "formik";
 import React, { useEffect } from "react";
+import { useTranslation } from "react-i18next";
 
+import { translatePath } from "../../constants/i18nPath";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { onTogglePaymentModal } from "../../store/slices/commonSilce";
@@ -22,6 +24,7 @@ export const FormNavigation: React.FC<Props> = ({
 }) => {
   const { selectedCard } = useAppSelector((state) => state.cards);
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   const { isValid, validateForm } = useFormikContext();
 
@@ -38,7 +41,7 @@ export const FormNavigation: React.FC<Props> = ({
       {currentStep === 0 ? (
         <>
           <Button variant="text" onClick={handlePrev}>
-            Back to the tickets widget
+            {t(`${translatePath.widget_signUp}.back`)}
           </Button>
 
           <Button
@@ -46,13 +49,13 @@ export const FormNavigation: React.FC<Props> = ({
             disabled={!isValid}
             onClick={handleContinue}
           >
-            Continue
+            {t(`${translatePath.widget_signUp}.continue`)}
           </Button>
         </>
       ) : (
         <>
           <Button variant="text" onClick={handleBack}>
-            Back to the auth form
+            {t(`${translatePath.widget_card}.back`)}
           </Button>
 
           <Button
@@ -61,7 +64,7 @@ export const FormNavigation: React.FC<Props> = ({
             onClick={onSubmit}
             type="submit"
           >
-            Buy
+            {t(`${translatePath.widget_card}.buy`)}
           </Button>
         </>
       )}

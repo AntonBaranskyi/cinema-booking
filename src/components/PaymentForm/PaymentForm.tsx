@@ -1,7 +1,9 @@
 import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
 import { ErrorMessage, FormikProps, FormikValues } from "formik";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
+import { translatePath } from "../../constants/i18nPath";
 import { useBankCard } from "../../hooks/useBankCard";
 import { getInputProps } from "../../utils/stepsForm";
 import BankCardItem from "../BankCardItem";
@@ -20,22 +22,24 @@ type Props = {
 export const PaymentForm: React.FC<Props> = ({ form, name }) => {
   const { cards, onHandleAddCard, isEmpty, isValid } = useBankCard();
 
-  console.log(cards);
-
   const handleAddingCard = () => {
     onHandleAddCard(name);
   };
 
+  const { t } = useTranslation();
+
   return (
     <>
       <Typography variant="h3" textAlign="center" mb={2}>
-        Payment
+        {t(`${translatePath.widget_card}.title`)}
       </Typography>
-      <Typography variant="h6">Saved cards:</Typography>
+      <Typography variant="h6">
+        {t(`${translatePath.widget_card}.saved`)}:
+      </Typography>
       <Box className={styles.CardsWrapper} mb={3}>
         {cards.length === 0 ? (
           <Typography variant="h5" textAlign="center">
-            Add your card for buying ticket
+            {t(`${translatePath.widget_card}.empty`)}
           </Typography>
         ) : (
           cards.map((card) => (
@@ -44,13 +48,13 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
         )}
       </Box>
       <Typography variant="h6" mb={1}>
-        Add new card
+        {t(`${translatePath.widget_card}.add_new`)}
       </Typography>
       <Box mb={3}>
-        <InputLabel>Card holder name</InputLabel>
+        <InputLabel>{t(`${translatePath.widget_card}.holder`)}</InputLabel>
         <TextField
           type="text"
-          placeholder="Please write name"
+          placeholder={t(`${translatePath.widget_card}.holder_placeholder`)}
           className={styles.InputName}
           {...getInputProps(name.fullName, form)}
         />
@@ -58,10 +62,10 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
 
       <Box className={styles.extraCardData} mb={4}>
         <Box className={styles.InputsWrapperBig}>
-          <InputLabel>Card number</InputLabel>
+          <InputLabel>{t(`${translatePath.widget_card}.number`)}</InputLabel>
           <TextField
             type="number"
-            placeholder="Please,write your card number"
+            placeholder={t(`${translatePath.widget_card}.number_placeholder`)}
             className={styles.InputItem}
             {...getInputProps(name.cardNumber, form)}
           />
@@ -70,10 +74,10 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
         </Box>
 
         <Box className={styles.InputWrapperSm}>
-          <InputLabel>Expire date</InputLabel>
+          <InputLabel>{t(`${translatePath.widget_card}.expire`)}</InputLabel>
 
           <TextField
-            placeholder="MM/YY"
+            placeholder={t(`${translatePath.widget_card}.expire_placeholder`)}
             className={styles.InputItem}
             {...getInputProps(name.expiryDate, form)}
           />
@@ -99,7 +103,7 @@ export const PaymentForm: React.FC<Props> = ({ form, name }) => {
         sx={{ marginBottom: 4 }}
         onClick={handleAddingCard}
       >
-        Add card
+        {t(`${translatePath.widget_card}.add_card`)}
       </Button>
     </>
   );
