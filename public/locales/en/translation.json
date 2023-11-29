@@ -48,26 +48,26 @@
         "phone_placeholder": "Write your phone number",
         "back": "Back to the tickets widget",
         "continue": "Continue"
+      },
+      "card_payment": {
+        "title": "Payment",
+        "empty": "Add your card for buying ticket",
+        "saved": "Saved cards",
+        "add_new": "Add new card",
+        "delete": "Remove card",
+        "adding": "Add new card",
+        "holder": "Card holder name",
+        "holder_placeholder": "Please,write your name",
+        "number": "Card number",
+        "number_placeholder": "Please,write your card number",
+        "expire": "Expire date",
+        "expire_placeholder": "MM/YY",
+        "cvv": "CVV",
+        "success": "Your payment was succesfull.",
+        "back": "Back to the auth form",
+        "buy": "Buy",
+        "add_card": "Add card"
       }
-    },
-    "card_payment": {
-      "title": "Payment",
-      "empty": "Add your card for buying ticket",
-      "saved": "Saved cards",
-      "add_new": "Add new card",
-      "delete": "Remove card",
-      "adding": "Add new card",
-      "holder": "Card holder name",
-      "holder_placeholder": "Please,write your name",
-      "number": "Card number",
-      "number_placeholder": "Please,write your card number",
-      "expire": "Expire date",
-      "expire_placeholder": "MM/YY",
-      "cvv": "CVV",
-      "success": "Your payment was succesfull.",
-      "back": "Back to the auth form",
-      "buy": "Buy",
-      "add_card": "Add card"
     }
   }
 }
