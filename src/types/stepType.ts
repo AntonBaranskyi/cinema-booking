@@ -2,13 +2,13 @@
 import React from "react";
 import Yup from "yup";
 
-type SignUpNamesType = {
+export type SignUpNamesType = {
   fullName: string;
   email: string;
   phone: string;
 };
 
-type CardDataNameTypes = {
+export type CardDataNameTypes = {
   fullName: string;
   cardNumber: string;
   expiryDate: string;
@@ -16,7 +16,7 @@ type CardDataNameTypes = {
 };
 
 export type Step = {
-  name: SignUpNamesType | CardDataNameTypes;
+  name: SignUpNamesType | CardDataNameTypes | null;
   component: React.ComponentType<any>;
   validationSchema: Yup.Schema<any>;
 };
