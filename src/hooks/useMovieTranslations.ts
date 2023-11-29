@@ -1,5 +1,5 @@
-import { TRANSLATE_ITEM } from "../types/TranslateItemsEnum";
 import { IMovie } from "../types/movie";
+import { TRANSLATE_ITEM } from "../types/translateItemsEnum";
 import { getItemLang } from "../utils/prepareDescr";
 import { useAppSelector } from "./useAppSelector";
 

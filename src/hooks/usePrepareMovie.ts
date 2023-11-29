@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 
 import { onFilterMovies } from "../store/slices/moviesSlice";
-import { TRANSLATE_ITEM } from "../types/TranslateItemsEnum";
 import { IMovie } from "../types/movie";
+import { TRANSLATE_ITEM } from "../types/translateItemsEnum";
 import { filterMovies } from "../utils/filterFilms";
 import { getItemLang } from "../utils/prepareDescr";
 import { useAppDispatch } from "./useAppDispatch";
