@@ -3,18 +3,19 @@
   justify-content: space-between;
   align-items: center;
 
-  min-width: 600px;
+  min-width: 37.5rem;
 
-  padding: 10px;
-  border-radius: 10px;
+  padding: 0.625rem;
+
+  border-radius: 0.625rem;
   background-color: #222;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
 
   .CardPhoto {
-    height: 48px;
-    width: 48px;
+    height: 3rem;
+    width: 3rem;
   }
 
   .CardDelete {
