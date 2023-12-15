@@ -7,7 +7,7 @@ import TicketCard from "../TicketCard";
 import styles from "./TicketsListWidget.module.scss";
 
 export const TicketsListWidget = () => {
-  const { ticketsForCurrentMovie, totalTicketsCount, totalTicketsPrice } =
+  const { notSellTickets, totalTicketsCount, totalTicketsPrice } =
     useTicketsData();
 
   const { t } = useTranslation();
@@ -28,7 +28,7 @@ export const TicketsListWidget = () => {
       </Box>
 
       <Box className={styles.TicketsBox}>
-        {ticketsForCurrentMovie.map((ticket) => (
+        {notSellTickets.map((ticket) => (
           <TicketCard ticket={ticket} key={ticket.id} />
         ))}
       </Box>

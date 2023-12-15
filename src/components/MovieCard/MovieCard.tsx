@@ -6,7 +6,7 @@ import poster from "../../assets/movie_poster.jpg";
 import { SESSIONS } from "../../constants/sesions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
-import { onToggleWidget } from "../../store/slices/commonSilce";
+import { onToggleWidget } from "../../store/slices/commonSlice";
 import { IMovie } from "../../types/movie";
 import { prepareTitle } from "../../utils/normalizeTitle";
 import styles from "./MovieCard.module.scss";

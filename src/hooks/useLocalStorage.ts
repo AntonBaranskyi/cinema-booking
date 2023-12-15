@@ -4,7 +4,7 @@ import { localStorageKeys } from "../constants/localStorageKeys";
 import {
   onChangeCurrentMovie,
   onChangeCurrentSession,
-} from "../store/slices/commonSilce";
+} from "../store/slices/commonSlice";
 import { onLoadMovieStats, onLoadTickets } from "../store/slices/ticketsSlice";
 import { useAppDispatch } from "./useAppDispatch";
 import { useAppSelector } from "./useAppSelector";
@@ -18,6 +18,8 @@ export const useLocalStorage = () => {
   const { ticketsByMovie, movieStats } = useAppSelector(
     (state) => state.tickets,
   );
+
+  const { cards, selectedCard } = useAppSelector((state) => state.cards);
 
   useEffect(() => {
     const storedMovieStats = localStorage.getItem(localStorageKeys.movieStats);
@@ -67,5 +69,16 @@ export const useLocalStorage = () => {
     );
   }, [movieStats]);
 
-  return { currentSession, currentMovieId };
+  useEffect(() => {
+    localStorage.setItem(localStorageKeys.cards, JSON.stringify(cards));
+  }, [cards]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      localStorageKeys.selectedCard,
+      JSON.stringify(selectedCard),
+    );
+  }, [selectedCard]);
+
+  return { currentSession, currentMovieId, cards, selectedCard };
 };

@@ -7,6 +7,8 @@ import Header from "../../components/Header";
 import MovieInfo from "../../components/MovieInfo";
 import MoviePoster from "../../components/MoviePoster";
 import MovieWidget from "../../components/MovieWidget";
+import PaymentWidget from "../../components/PaymentWidget";
+import { ThanksModal } from "../../components/ThanksModal";
 import { useMoviePageData } from "../../hooks/useMoviePageData";
 import styles from "./FilmPage.module.scss";
 
@@ -35,6 +37,8 @@ export const FilmPage = () => {
       </Container>
       <BookingWidget />
       <ExpireDialog />
+      <PaymentWidget />
+      <ThanksModal />
     </>
   );
 };

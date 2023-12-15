@@ -1,0 +1,24 @@
+.CardsWrapper {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1.2rem;
+}
+
+.extraCardData {
+  display: flex;
+
+  gap: 0.8rem;
+}
+
+.InputsWrapperBig {
+  width: 50%;
+}
+
+.InputWrapperSm {
+  width: 25%;
+}
+
+.InputItem {
+  width: 100%;
+}

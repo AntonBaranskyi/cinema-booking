@@ -3,17 +3,29 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { localStorageKeys } from "../../constants/localStorageKeys";
 import { Language } from "../../types/langType";
 
-const initialState = {
+type State = {
+  currentLanguage: Language;
+  isOpenBooking: boolean;
+  isExpireBooking: boolean;
+  isOpenPayment: boolean;
+  isOpenThanks: boolean;
+  currentMovieId: string;
+  currentSession: string;
+};
+
+const initialState: State = {
   currentLanguage: (localStorage.getItem("lang") || "en") as Language,
   isOpenBooking: false,
   isExpireBooking: false,
+  isOpenPayment: false,
   currentMovieId: localStorage.getItem(localStorageKeys.currentMovie) as string,
   currentSession: localStorage.getItem(
     localStorageKeys.currentSession,
   ) as string,
+  isOpenThanks: false,
 };
 
-const langSlice = createSlice({
+const commonSlice = createSlice({
   name: "common",
   initialState,
   reducers: {
@@ -34,8 +46,16 @@ const langSlice = createSlice({
       state.currentSession = action.payload.session;
     },
 
+    onTogglePaymentModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenPayment = action.payload;
+    },
+
     onToggleExpireModal: (state, action: PayloadAction<boolean>) => {
       state.isExpireBooking = action.payload;
+    },
+
+    onToggleThanksModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenThanks = action.payload;
     },
 
     onChangeCurrentMovie: (state, action: PayloadAction<string>) => {
@@ -54,5 +74,7 @@ export const {
   onToggleExpireModal,
   onChangeCurrentMovie,
   onChangeCurrentSession,
-} = langSlice.actions;
-export default langSlice.reducer;
+  onTogglePaymentModal,
+  onToggleThanksModal,
+} = commonSlice.actions;
+export default commonSlice.reducer;

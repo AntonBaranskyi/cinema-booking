@@ -1,0 +1,32 @@
+.CardItemWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-width: 37.5rem;
+
+  padding: 0.625rem;
+
+  border-radius: 0.625rem;
+  background-color: #222;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+
+  .CardPhoto {
+    height: 3rem;
+    width: 3rem;
+  }
+
+  .CardDelete {
+    cursor: pointer;
+
+    &:hover {
+      color: lightgray;
+      transition: color 0.3s ease;
+    }
+  }
+}
+.CardActive {
+  border: 1px solid red;
+}

@@ -3,7 +3,7 @@ import React from "react";
 
 import { SESSIONS } from "../../constants/sesions";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
-import { onToggleWidget } from "../../store/slices/commonSilce";
+import { onToggleWidget } from "../../store/slices/commonSlice";
 import { IMovie } from "../../types/movie";
 import styles from "./MovieWidget.module.scss";
 

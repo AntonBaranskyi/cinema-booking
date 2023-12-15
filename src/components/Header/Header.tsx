@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.png";
 import { HEADER_LANG } from "../../constants/headerLanguage";
-import { FLAG_ICON_BASE_URL } from "../../constants/iconURl";
+import { FLAG_ICON_BASE_URL } from "../../constants/iconUrl";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useUpdateTime } from "../../hooks/useUpdateTime";
 import styles from "./Header.module.scss";

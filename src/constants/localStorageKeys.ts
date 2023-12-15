@@ -3,4 +3,6 @@ export const localStorageKeys = {
   currentMovie: "movieId",
   currentSession: "session",
   movieStats: "movieStats",
+  cards: "cards",
+  selectedCard: "currentCard",
 };

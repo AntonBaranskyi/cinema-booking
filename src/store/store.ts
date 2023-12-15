@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import common from "./slices/commonSilce";
+import cards from "./slices/cardSlice";
+import common from "./slices/commonSlice";
 import movies from "./slices/moviesSlice";
 import tickets from "./slices/ticketsSlice";
 
@@ -9,6 +10,7 @@ export const store = configureStore({
     movies,
     common,
     tickets,
+    cards,
   },
 });
 

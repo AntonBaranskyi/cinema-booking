@@ -12,6 +12,8 @@ export const BookingList = () => {
   const { handleChooseTicket, ticketsForCurrentMovie } = useTicketsData();
   const { t } = useTranslation();
 
+  const ownTickets = ticketsForCurrentMovie.filter((ticket) => ticket.isSell);
+
   return (
     <Box>
       <Typography variant="h1" textAlign="center" mb={5}>
@@ -48,6 +50,7 @@ export const BookingList = () => {
                       ? "contained"
                       : "outlined"
                   }
+                  disabled={ownTickets.some((ticket) => ticket.id === seat.id)}
                   className={styles.WidgetPlace}
                   color={
                     ticketsForCurrentMovie.some(
