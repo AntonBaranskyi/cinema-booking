@@ -1,28 +1,23 @@
 import { Box } from "@mui/material";
 import Paginate from "@mui/material/Pagination";
 import cn from "classnames";
-import { useSelector } from "react-redux";
+import React from "react";
 
 import { useFilters } from "../../hooks/useFilters";
-import { usePrepareMovie } from "../../hooks/usePrepareMovie";
-import { RootState } from "../../store/store";
 import styles from "./Pagination.module.scss";
 
-export const Pagination = () => {
-  const { filteredMovies, moviesPerPage } = useSelector(
-    (state: RootState) => state.movies,
-  );
+type Props = {
+  totalMovies: number;
+};
 
-  const { noMoviesFound } = usePrepareMovie();
-
+export const Pagination: React.FC<Props> = ({ totalMovies }) => {
   const { currentPage, handleChangePage } = useFilters();
 
-  const pageCount = Math.ceil(filteredMovies.length / moviesPerPage);
+  const pageCount = Math.ceil(totalMovies / 6);
 
   return (
     <Box
       className={cn({
-        [styles.paginationHide]: noMoviesFound,
         [styles.paginationWrapper]: true,
       })}
     >

@@ -1,5 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
+import { movieAPI } from "../services/moviesService";
 import cards from "./slices/cardSlice";
 import common from "./slices/commonSlice";
 import movies from "./slices/moviesSlice";
@@ -11,7 +12,11 @@ export const store = configureStore({
     common,
     tickets,
     cards,
+    [movieAPI.reducerPath]: movieAPI.reducer,
   },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(movieAPI.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

@@ -11,6 +11,7 @@ type State = {
   isOpenThanks: boolean;
   currentMovieId: string;
   currentSession: string;
+  isOpenYoutubeModal: boolean;
 };
 
 const initialState: State = {
@@ -23,6 +24,7 @@ const initialState: State = {
     localStorageKeys.currentSession,
   ) as string,
   isOpenThanks: false,
+  isOpenYoutubeModal: false,
 };
 
 const commonSlice = createSlice({
@@ -65,6 +67,10 @@ const commonSlice = createSlice({
     onChangeCurrentSession: (state, action: PayloadAction<string>) => {
       state.currentSession = action.payload;
     },
+
+    onToggleYoutubeModal: (state, action: PayloadAction<boolean>) => {
+      state.isOpenYoutubeModal = action.payload;
+    },
   },
 });
 
@@ -76,5 +82,6 @@ export const {
   onChangeCurrentSession,
   onTogglePaymentModal,
   onToggleThanksModal,
+  onToggleYoutubeModal,
 } = commonSlice.actions;
 export default commonSlice.reducer;

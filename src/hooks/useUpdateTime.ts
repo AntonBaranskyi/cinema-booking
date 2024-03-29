@@ -5,10 +5,13 @@ import {
   onToggleWidget,
 } from "../store/slices/commonSlice";
 import { useAppDispatch } from "./useAppDispatch";
+import { useAppSelector } from "./useAppSelector";
 
 export const useUpdateTime = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
   const [timer, setTimer] = useState(600);
+
+  const { isOpenBooking } = useAppSelector((state) => state.common);
 
   const dispatch = useAppDispatch();
 
@@ -21,12 +24,12 @@ export const useUpdateTime = () => {
   }, []);
 
   useEffect(() => {
-    if (!timer) {
+    if (!timer && isOpenBooking) {
       dispatch(onToggleWidget({ isOpen: false, movieId: "", session: "" }));
 
       dispatch(onToggleExpireModal(true));
     }
-  }, [timer, dispatch]);
+  }, [timer, dispatch, isOpenBooking]);
 
   useEffect(() => {
     const intervalTime = setInterval(() => {

@@ -1,19 +1,15 @@
 import { Box, List, ListItem, Typography } from "@mui/material";
 import React from "react";
 
-import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
-import { IMovie } from "../../types/movie";
-import { normalizeDate } from "../../utils/prepareDate";
+import { IMovieServer } from "../../types/movieServer";
 import styles from "./MovieInfo.module.scss";
 
 type Props = {
-  currentMovie: IMovie;
+  currentMovie: IMovieServer;
 };
 
 export const MovieInfo: React.FC<Props> = ({ currentMovie }) => {
-  const { langDescr, genreDescr } = useMovieInfoTranslations();
-  const normalizedStart = normalizeDate(currentMovie.startDate);
-  const normalizedEnd = normalizeDate(currentMovie.endDate);
+  console.log(currentMovie);
 
   const renderListItem = (label: string, value: React.ReactNode) => (
     <ListItem key={label}>
@@ -34,20 +30,34 @@ export const MovieInfo: React.FC<Props> = ({ currentMovie }) => {
         fontSize={40}
         gutterBottom
       >
-        {currentMovie.title_en}
+        {currentMovie.title}
       </Typography>
 
       <List disablePadding className={styles.movieInfoList}>
-        {renderListItem("Age", `${currentMovie.ageRestriction} +`)}
-        {renderListItem("Year", currentMovie.startDate.slice(0, 4))}
-        {renderListItem("Original name", currentMovie.title_en)}
-        {renderListItem("Genre", currentMovie[genreDescr])}
-        {renderListItem("Format", currentMovie.format)}
-        {renderListItem("Period", `${normalizedStart} - ${normalizedEnd}`)}
+        {renderListItem("Age", `${currentMovie.adult ? "18" : "12"} +`)}
+        {renderListItem("Year", currentMovie.release_date.slice(0, 4))}
+        {renderListItem("Original name", currentMovie.title)}
+        {renderListItem(
+          "Rating",
+          currentMovie.vote_average !== 0
+            ? currentMovie.vote_average.toFixed(1)
+            : "Not avaible",
+        )}
+        {renderListItem("Format", currentMovie.is_3D ? "3D" : "2D")}
+        {renderListItem(
+          "Genres",
+          currentMovie.genres.map((genre, i, array) => {
+            if (i !== array.length - 1) {
+              return ` ${genre},`;
+            } else {
+              return ` ${genre}`;
+            }
+          }),
+        )}
       </List>
 
       <Typography paragraph color="white" letterSpacing={1.2}>
-        {currentMovie[langDescr]}
+        {currentMovie.overview}
       </Typography>
     </Box>
   );

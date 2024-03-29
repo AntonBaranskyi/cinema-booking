@@ -13,7 +13,7 @@ export const useFilters = () => {
 
   const filter = (searchParams.get("filter") || FILTERS.ALL) as FILTERS;
 
-  const query = searchParams.get("query");
+  const query = searchParams.get("query") as string;
   const pageParam = searchParams.get("page");
   const sort = searchParams.get("order") as SORT;
 

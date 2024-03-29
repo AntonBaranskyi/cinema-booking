@@ -1,17 +1,11 @@
 import { useParams } from "react-router-dom";
 
-import { normalizeTitlePath } from "../utils/pathTitle";
-import { useAppSelector } from "./useAppSelector";
+import { useGetSingleMovieQuery } from "../services/moviesService";
 
 export const useMoviePageData = () => {
   const { id } = useParams();
-  const { allMovies } = useAppSelector((state) => state.movies);
 
-  const titleForPath = normalizeTitlePath(id as string);
+  const { data, isLoading } = useGetSingleMovieQuery({ id });
 
-  const currentMovie = allMovies.find(
-    (movie) => movie.title_en.toLowerCase() === titleForPath,
-  );
-
-  return { currentMovie };
+  return { currentMovie: data, loading: isLoading };
 };

@@ -1,15 +1,16 @@
 import { Box, Link } from "@mui/material";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useMoviePageData } from "../../hooks/useMoviePageData";
-import { useMovieInfoTranslations } from "../../hooks/useMovieTranslations";
 import styles from "./Bredcrumbs.module.scss";
 
-export const BreadcrumbsBlock = () => {
+type Props = {
+  movieTitle: string;
+};
+
+export const BreadcrumbsBlock: React.FC<Props> = ({ movieTitle }) => {
   const navigate = useNavigate();
-  const { langTitle } = useMovieInfoTranslations();
-  const { currentMovie } = useMoviePageData();
 
   const handleNavigate = () => {
     navigate("/");
@@ -28,7 +29,7 @@ export const BreadcrumbsBlock = () => {
         </Link>
 
         <Link underline="hover" href="#" color="white">
-          {currentMovie && currentMovie[langTitle]}
+          {movieTitle}
         </Link>
       </Breadcrumbs>
     </Box>
