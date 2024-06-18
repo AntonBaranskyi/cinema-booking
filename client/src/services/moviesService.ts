@@ -6,7 +6,8 @@ import { SORT } from "../types/sortEnum";
 
 export const movieAPI = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "http://localhost:8000",
+    // baseUrl: "https://cinema-booking-uhpm.onrender.com",
     headers: {
       Accept: "application/json",
     },

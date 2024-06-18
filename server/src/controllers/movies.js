@@ -14,9 +14,9 @@ const getAllMovies = async (
 
   await Movie.deleteMany({});
 
-  const moviesData = await axios.get<IMovieResponse>(`/discover/movie`);
+  const moviesData = await axios.get(`/discover/movie`);
 
-  const genres = await axios.get<IGenreResponse>('/genre/movie/list');
+  const genres = await axios.get('/genre/movie/list');
 
   const movieWithGenres = getMovieGenres({
     movieData: moviesData.data.results,
