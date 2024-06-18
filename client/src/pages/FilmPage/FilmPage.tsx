@@ -22,6 +22,10 @@ import styles from "./FilmPage.module.scss";
 export const FilmPage = () => {
   const { id } = useParams();
 
+  if (!id) {
+    return <h1>Loading</h1>;
+  }
+
   const { data: currentMovie, isLoading } = useGetSingleMovieQuery({ id });
 
   const { data: uploadingData, isLoading: uploadingLoading } =
