@@ -1,0 +1,26 @@
+.dots {
+  position: absolute;
+  bottom: 15px;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+  .dot {
+    width: 21px;
+    height: 21px;
+
+    background: #ffffff;
+
+    border-radius: 50%;
+
+    cursor: pointer;
+  }
+
+  .activeDot {
+    width: 45px;
+    border-radius: 14px;
+    cursor: pointer;
+
+    background: #ff0000;
+    height: 21px;
+  }
+}

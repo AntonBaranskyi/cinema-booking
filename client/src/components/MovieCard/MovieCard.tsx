@@ -13,26 +13,6 @@ type Props = {
 
 export const MovieCard: React.FC<Props> = ({ movie }) => {
   const navigate = useNavigate();
-  // const { langTitle } = useMovieInfoTranslations();
-  // const dispatch = useAppDispatch();
-
-  // const normalizeTitle = prepareTitle(movie[langTitle] as string);
-
-  // const handleNavigate = () => {
-  //   const normalizeEngTitle = movie.title_en.toLowerCase().replace(/ /g, "_");
-
-  //   navigate(`/film/${normalizeEngTitle}`);
-  // };
-
-  // const handleHourClick = (hour: string) => {
-  //   dispatch(
-  //     onToggleWidget({
-  //       isOpen: true,
-  //       movieId: movie.title_en,
-  //       session: hour,
-  //     }),
-  //   );
-  // };
 
   const handleNavigate = () => {
     navigate(`/film/${movie._id}`);
@@ -42,7 +22,7 @@ export const MovieCard: React.FC<Props> = ({ movie }) => {
     <Card className={styles.card}>
       <CardContent className={styles.cardContent}>
         <img
-          src={`${POSTER}/${movie.poster_path}`}
+          src={`${POSTER}${movie.poster_path}`}
           alt="poster"
           className={styles.poster}
         />

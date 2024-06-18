@@ -1,0 +1,54 @@
+.mainWrapper {
+  height: calc(100vh - 102px);
+
+  .photoPoster {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: calc(100vh - 102px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  .buttonWrapper {
+    margin-bottom: 80px;
+    display: flex;
+    justify-content: center;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .container {
+    position: absolute;
+    bottom: 20%;
+
+    .movieInfo {
+      display: flex;
+
+      gap: 20px;
+
+      .genreWrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+      }
+      .genreGroup {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 44px;
+        background: #ffffff;
+        border-radius: 20px;
+
+        padding: 10px;
+
+        text-align: center;
+      }
+    }
+  }
+}

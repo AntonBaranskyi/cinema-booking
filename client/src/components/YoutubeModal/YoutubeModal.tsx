@@ -5,13 +5,12 @@ import YouTube from "react-youtube";
 import { useAppDispatch } from "../../hooks/useAppDispatch";
 import { useAppSelector } from "../../hooks/useAppSelector";
 import { onToggleYoutubeModal } from "../../store/slices/commonSlice";
-import { IMovieServer } from "../../types/movieServer";
 
 type Props = {
-  currentMovie: IMovieServer;
+  movieKey: string;
 };
 
-export const YoutubeModal: React.FC<Props> = ({ currentMovie }) => {
+export const YoutubeModal: React.FC<Props> = ({ movieKey }) => {
   const { isOpenYoutubeModal } = useAppSelector((state) => state.common);
 
   const dispatch = useAppDispatch();
@@ -30,9 +29,7 @@ export const YoutubeModal: React.FC<Props> = ({ currentMovie }) => {
           alignItems: "center",
         }}
       >
-        {currentMovie && currentMovie.video && (
-          <YouTube videoId={currentMovie.video.key} />
-        )}
+        {movieKey && <YouTube videoId={movieKey} />}
       </Box>
     </Modal>
   );

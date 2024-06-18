@@ -1,6 +1,7 @@
 import { IVideo } from "./video";
 
 export interface IMovieServer {
+  backdrop_path: any;
   adult: boolean;
   genreIds: number[];
   id: number;

@@ -45,7 +45,6 @@ export const FilmPage = () => {
 
   return (
     <>
-      <Header />
       <Container maxWidth="xl">
         {currentMovie && <BreadcrumbsBlock movieTitle={currentMovie.title} />}
 
@@ -61,7 +60,9 @@ export const FilmPage = () => {
           </Grid>
 
           <Grid item lg={3} sm={12} className={styles.widget}>
-            {currentMovie && currentMovie.type === "upcoming" ? (
+            {currentMovie &&
+            currentMovie.type === "upcoming" &&
+            new Date(currentMovie.release_date) > new Date() ? (
               <UpcomingWidget upcomingMovie={currentMovie} />
             ) : (
               currentMovie && <MovieWidget currentMovie={currentMovie} />
@@ -79,7 +80,7 @@ export const FilmPage = () => {
       <ExpireDialog />
       <PaymentWidget />
       <ThanksModal />
-      {currentMovie && <YoutubeModal currentMovie={currentMovie} />}
+      {currentMovie && <YoutubeModal movieKey={currentMovie.video.key} />}
     </>
   );
 };

@@ -20,10 +20,10 @@ import styles from "./Header.module.scss";
 export const Header = () => {
   const { formattedTime } = useUpdateTime();
   const { currentLanguage, handleChangeLang } = useLanguage();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleLogoClick = () => {
-    navigate("/");
+    // navigate("/");
   };
 
   return (
