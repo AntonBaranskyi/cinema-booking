@@ -5,7 +5,6 @@ import axios from './src/services/axios.js';
 
 import mongoose from 'mongoose';
 import { getMovieVideo } from './src/helpers/getMovieVideo.js';
-import { tryCatch } from './src/middleware/tryCatch.js';
 
 import movieController from './src/controllers/movies.js';
 import Movie from './src/models/Movie.js';
@@ -38,7 +37,7 @@ app.get('/movies/upcoming', async (req, resp) => {
 
     const upcomingMovies = await axios.get('/trending/movie/day');
 
-    const mutatedMovies = upcomingMovies.data.results.map((movie: any) => ({
+    const mutatedMovies = upcomingMovies.data.results.map((movie) => ({
       ...movie,
       type: 'upcoming',
     }));

@@ -1,14 +1,11 @@
-import { NextFunction, Request, Response } from 'express';
 import Movie from '../models/Movie.js';
-import { IMovieResponse } from '../types/IMovie.js';
 import axios from '../services/axios.js';
-import { IGenreResponse } from '../types/IGenre.js';
 import { getMovieGenres } from '../helpers/getMovieGenres.js';
 
 const getAllMovies = async (
-  req: Request,
-  resp: Response,
-  next: NextFunction
+  req,
+  resp,
+  next
 ) => {
   const page = req.query.page ? String(req.query.page) : '1';
   const query = req.query.query ? String(req.query.query) : '';
