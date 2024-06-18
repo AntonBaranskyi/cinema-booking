@@ -5,7 +5,6 @@ import { PuffLoader } from "react-spinners";
 import BookingWidget from "../../components/BookingWidget";
 import BreadcrumbsBlock from "../../components/BreadcrumbsBlock";
 import ExpireDialog from "../../components/ExpireDialog";
-import Header from "../../components/Header";
 import MovieInfo from "../../components/MovieInfo";
 import MoviePoster from "../../components/MoviePoster";
 import MovieWidget from "../../components/MovieWidget";

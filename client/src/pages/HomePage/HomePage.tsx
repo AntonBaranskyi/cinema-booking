@@ -5,7 +5,6 @@ import BookingWidget from "../../components/BookingWidget";
 import DividerBlock from "../../components/DividerBlock";
 import ExpireDialog from "../../components/ExpireDialog";
 import Filters from "../../components/Filters";
-import Header from "../../components/Header";
 import Main from "../../components/Main";
 import MoviesList from "../../components/MoviesList";
 import Pagination from "../../components/Pagination";

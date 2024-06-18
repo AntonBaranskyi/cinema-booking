@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Box, Container } from "@mui/system";
-import { useNavigate } from "react-router-dom";
 
 import logo from "../../assets/icons/logo.png";
 import { HEADER_LANG } from "../../constants/headerLanguage";

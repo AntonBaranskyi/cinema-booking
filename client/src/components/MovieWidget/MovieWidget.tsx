@@ -18,7 +18,7 @@ export const MovieWidget: React.FC<Props> = ({ currentMovie }) => {
     dispatch(
       onToggleWidget({
         isOpen: true,
-        movieId: currentMovie.title_en,
+        movieId: 's',
         session: hour,
       }),
     );
@@ -43,7 +43,7 @@ export const MovieWidget: React.FC<Props> = ({ currentMovie }) => {
               onClick={() => handleHourClick(hour)}
             >
               <Typography variant="button">{hour}</Typography>
-              {currentMovie.format === "3D" && (
+              {currentMovie.is_3D  && (
                 <Typography className={styles.itemFormat}>3D</Typography>
               )}
             </Box>
