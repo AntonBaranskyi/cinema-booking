@@ -4,11 +4,11 @@ import cors from 'cors';
 import axios from './src/services/axios.js';
 
 import mongoose from 'mongoose';
-import Movie from './src/models/Movie.js';
 import { getMovieVideo } from './src/helpers/getMovieVideo.js';
 import { tryCatch } from './src/middleware/tryCatch.js';
 
 import movieController from './src/controllers/movies.js';
+import Movie from './src/models/Movie.js';
 
 dotenv.config();
 
